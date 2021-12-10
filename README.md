@@ -4,6 +4,16 @@ A Simple utility to help users Manage their device with Device Portal, Download 
 
 
 
+
+
+### What's new in v1.13.14
+
+- Fixed Cab Downloader output not being Scroll-able
+
+- Fixed issue with Crashes loading .txt cab lists
+
+  
+
 ## What can it do?
 
 - Access Windows Device Portal fully through 'localhost'/'127.0.0.1'
@@ -15,6 +25,8 @@ A Simple utility to help users Manage their device with Device Portal, Download 
 
 *Features, Name and Layout may change over time, screenshots to be updated soon*
 **Youtube: Videos fetched are set to lower quality, this is due to two limitations, 1) Need to learn how to Mux HD Audio and Video streams likely with FFMPEG. 2) The class used could be nicer, or more packages available that support W10M*
+
+*For Cab Lists go [here](https://github.com/empyreal96/WPCabLinks.db)* 
 
 
 

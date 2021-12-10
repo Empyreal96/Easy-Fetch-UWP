@@ -227,25 +227,35 @@ namespace Phone_Helper
     
         private async void LoadList_Click(object sender, RoutedEventArgs e)
         {
-            FileOpenPicker fileOpen = new FileOpenPicker();
-            fileOpen.ViewMode = PickerViewMode.List;
-            fileOpen.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
-            fileOpen.FileTypeFilter.Add(".txt");
-            StorageFile storageFile = await fileOpen.PickSingleFileAsync();
-            if (storageFile == null)
+            try
             {
-                InfoBox.Text = "No File Chosen";
-                return;
-            }
-            var links = await FileIO.ReadLinesAsync(storageFile);
-            userList = links.ToArray();
-            string newbuild = storageFile.Name;
-            if (build.Contains(".txt"))
+                userList = null;
+                build = null;
+                FileOpenPicker fileOpen = new FileOpenPicker();
+                fileOpen.ViewMode = PickerViewMode.List;
+                fileOpen.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
+                fileOpen.FileTypeFilter.Add(".txt");
+                StorageFile storageFile = await fileOpen.PickSingleFileAsync();
+                if (storageFile == null)
+                {
+                    InfoBox.Text = "No File Chosen";
+                    return;
+                }
+                var links = await FileIO.ReadLinesAsync(storageFile);
+                userList = links.ToArray();
+                string newbuild = storageFile.Name;
+                build = newbuild;
+                if (build.Contains(".txt") == true)
+                {
+                    build = newbuild.Replace(".txt", "");
+                }
+                
+                InfoBox.Text = $"Loaded {storageFile.DisplayName}, Click Download to start!";
+                userChoice = "Yes";
+            } catch (Exception ex)
             {
-                build = newbuild.Replace(".txt", "");
+                Exceptions.ThrownExceptionError(ex);
             }
-            InfoBox.Text = $"Loaded {storageFile.DisplayName}, Click Download to start!";
-            userChoice = "Yes";
 
         }
 

@@ -13,12 +13,13 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*" ScrollViewer.VerticalScrollMode="Enabled"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.Background>
             <ImageBrush ImageSource="/Assets/backdrop.jpg" Stretch="UniformToFill"/>
         </Grid.Background>
+
         <RelativePanel HorizontalAlignment="Left">
         
         <TextBlock x:Name="pageHeader" Grid.Row="0" HorizontalAlignment="Stretch" RequestedTheme="Dark" Text="W10M Cab Fetcher" RelativePanel.AlignTopWithPanel="True"  VerticalAlignment="Top" FontSize="18"  TextAlignment="Center" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" Margin="40,5,5,5" ManipulationMode="None" FontWeight="Bold"/>
@@ -56,11 +57,10 @@
             <TextBlock x:Name="TextBlockProgress"    RelativePanel.Below="TextBlockStatus" HorizontalAlignment="Left" Margin="5,5,5,5" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="15"/>
             <TextBlock x:Name="TextBlockStatus"   RelativePanel.Below="DLGrid" HorizontalAlignment="Left" Margin="5,5,5,5" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="15"/>
         </RelativePanel>
-        <RelativePanel x:Name="RPanel1" Grid.Row="2" VerticalAlignment="Stretch"   RelativePanel.Below="DLGrid">
-            <ScrollViewer>
-                <TextBlock x:Name="InfoBox"  TextWrapping="Wrap" HorizontalAlignment="Stretch" ScrollViewer.VerticalScrollMode="Enabled" ScrollViewer.HorizontalScrollMode="Auto" RelativePanel.Below="" RequestedTheme="Dark" Margin="5,5,5,5"  />
-            </ScrollViewer>
-        </RelativePanel>
+
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Visible">
+            <TextBox x:Name="InfoBox" Grid.Row="2" TextWrapping="Wrap" HorizontalAlignment="Stretch" ScrollViewer.IsVerticalRailEnabled="True" ScrollViewer.VerticalScrollMode="Enabled" ScrollViewer.HorizontalScrollMode="Enabled" VerticalAlignment="Stretch" RequestedTheme="Dark" Margin="5,5,5,5" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsHitTestVisible="False" IsTextPredictionEnabled="False"  />
+        </ScrollViewer>
     </Grid>
     
 </Page>
