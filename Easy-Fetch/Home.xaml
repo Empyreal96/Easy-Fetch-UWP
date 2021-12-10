@@ -1,0 +1,27 @@
+﻿<Page x:Class="Phone_Helper.Home"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:Phone_Helper"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+            NavigationCacheMode="Required"
+      RequestedTheme="Dark"
+      mc:Ignorable="d">
+
+
+    <Grid Margin="0,0,0,0">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/backdrop.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <RelativePanel>
+            <TextBox x:Name="PHHeader" Text="Easy-Fetch" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" VerticalAlignment="Top" FontSize="18" TextAlignment="Center" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" Margin="5,5,5,5" ManipulationMode="None" BorderBrush="{x:Null}" Background="{x:Null}" FontWeight="Bold" RequestedTheme="Dark"/>
+
+            <Border x:Name="HomeBorder" RelativePanel.Below="PHHeader" Margin="5,5,5,5">
+            <TextBlock x:Name="HomePage" RelativePanel.Below="PHHeader" TextWrapping="Wrap" ScrollViewer.VerticalScrollMode="Enabled" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Height="Auto" FontSize="16" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" TextAlignment="Left" Margin="5,5,5,5" Text="" RequestedTheme="Dark"/>
+            </Border>
+        </RelativePanel>
+    </Grid>
+
+
+</Page>

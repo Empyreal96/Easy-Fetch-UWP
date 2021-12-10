@@ -1,0 +1,18 @@
+﻿<Page
+    x:Class="Phone_Helper.Views.FileNamePopup"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Phone_Helper.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <RelativePanel>
+        <TextBox x:Name="Header" Text="Enter File Name:" BorderBrush="{x:Null}" Margin="5,5,5,5" IsReadOnly="True" IsHitTestVisible="False" IsTextPredictionEnabled="False"/>
+        <TextBox x:Name="FileNameString"  RelativePanel.Below="Header" Width="150" Margin="5,5,5,5"/>
+            <Button x:Name="ConfirmName" Margin="5,5,5,5" Click="ConfirmName_Click" Content="Confirm" RelativePanel.Below="FileNameString" />
+        </RelativePanel>
+    </Grid>
+</Page>

@@ -1,0 +1,404 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{DA1E7683-4F60-4647-B2E9-1C6F2A7B61B8}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Phone_Helper</RootNamespace>
+    <AssemblyName>Easy-Fetch</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.19041.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.14393.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
+    <PackageCertificateKeyFile>Phone Helper_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateThumbprint>
+    </PackageCertificateThumbprint>
+    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+    <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <GenerateTestArtifacts>True</GenerateTestArtifacts>
+    <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
+    <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+    <AppxBundle>Always</AppxBundle>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>false</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>false</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Acknowledgements.xaml.cs">
+      <DependentUpon>Acknowledgements.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CabFetch.xaml.cs">
+      <DependentUpon>CabFetch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Exception.cs" />
+    <Compile Include="GlobalStrings.cs" />
+    <Compile Include="Home.xaml.cs">
+      <DependentUpon>Home.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DevicePortalPage.xaml.cs">
+      <DependentUpon>DevicePortalPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FFUSearch.xaml.cs">
+      <DependentUpon>FFUSearch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Downloaders.xaml.cs">
+      <DependentUpon>Downloaders.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FFUClient.cs" />
+    <Compile Include="FileSize.cs" />
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NativeMethods.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StoreHelper.cs" />
+    <Compile Include="StoreFetch.xaml.cs">
+      <DependentUpon>StoreFetch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FileNamePopup.xaml.cs">
+      <DependentUpon>FileNamePopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowsDevicePortalWrapper.Shared\Core\AppCrashDumpCollection.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\Core\AppDeployment.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\Core\AppFileExplorer.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\Core\DeviceManager.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\Core\Dns-Sd.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\Core\DumpCollection.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\Core\Etw.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\Core\Networking.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\Core\OsInformation.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\Core\PerformanceData.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\Core\Power.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\Core\RemoteControl.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\Core\ResourceManager.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\Core\TaskManager.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\Core\WiFiManagement.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\Core\WindowsErrorReporting.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\Core\WindowsPerformanceRecorder.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\DevicePortal.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\Events\ApplicationInstallStatus.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\Events\ConnectionStatus.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\Events\WebSocketMessageReceivedEventArgs.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\Exceptions\DevicePortalException.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\HoloLens\HolographicOs.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\HoloLens\HolographicPerception.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\HoloLens\HolographicThermal.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\HoloLens\MixedRealityCapture.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\HoloLens\PerceptionSimulationPlayback.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\HoloLens\PerceptionSimulationRecording.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\HttpRest\HttpHeadersHelper.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\HttpRest\RequestHelpers.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\HttpRest\ResponseHelpers.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\HttpRest\RestDelete.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\HttpRest\RestGet.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\HttpRest\RestPost.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\HttpRest\RestPut.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\HttpRest\WebSocket.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\Interfaces\IDevicePortalConnection.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\IoT\ApplicationManager.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\IoT\AudioDevices.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\IoT\BluetoothConnectivity.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\IoT\DeviceInfo.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\IoT\IcsManager.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\IoT\IoTOnboarding.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\IoT\Limpet.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\IoT\ProcessManagement.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\IoT\RemoteSettings.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\IoT\WindowsUpdate.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\Utilities.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\Xbox\FiddlerSetup.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\Xbox\SmbShare.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\Xbox\UserManagement.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\Xbox\XboxAppDeployment.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\Xbox\XboxLiveSandbox.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\Xbox\XboxMediaCapture.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.Shared\Xbox\XboxSettings.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.UniversalWindows\CertificateHandling.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.UniversalWindows\Core\AppDeployment.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.UniversalWindows\DefaultDevicePortalConnection.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.UniversalWindows\HttpRest\HttpMultipartFileContent.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.UniversalWindows\HttpRest\RequestHelpers.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.UniversalWindows\HttpRest\RestDelete.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.UniversalWindows\HttpRest\RestGet.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.UniversalWindows\HttpRest\RestPost.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.UniversalWindows\HttpRest\RestPut.cs" />
+    <Compile Include="WindowsDevicePortalWrapper.UniversalWindows\HttpRest\WebSocket.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <Content Include="Assets\appx.png" />
+    <Content Include="Assets\backdrop.jpg" />
+    <Content Include="libvideo.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="WindowsDevicePortalWrapper.UniversalWindows\WindowsDevicePortalWrapper.UniversalWindows.csproj" />
+    <None Include="Phone Helper_TemporaryKey.pfx" />
+    <None Include="WindowsDevicePortalWrapper.Shared\Settings.StyleCop" />
+    <None Include="WindowsDevicePortalWrapper.Shared\WindowsDevicePortalWrapper.Shared.projitems" />
+    <None Include="WindowsDevicePortalWrapper.Shared\WindowsDevicePortalWrapper.Shared.shproj" />
+    <None Include="WindowsDevicePortalWrapper.UniversalWindows\DevicePortalWrapperUniversal.snk" />
+    <None Include="WindowsDevicePortalWrapper.UniversalWindows\project.json" />
+    <None Include="WindowsDevicePortalWrapper.UniversalWindows\project.lock.json" />
+    <None Include="WindowsDevicePortalWrapper.UniversalWindows\Settings.StyleCop" />
+    <None Include="WindowsDevicePortalWrapper.UniversalWindows\WindowsDevicePortalWrapper.UniversalWindows.nuget.props" />
+    <None Include="WindowsDevicePortalWrapper.UniversalWindows\WindowsDevicePortalWrapper.UniversalWindows.nuget.targets" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\LargeTile.scale-100.png" />
+    <Content Include="Assets\LargeTile.scale-125.png" />
+    <Content Include="Assets\LargeTile.scale-150.png" />
+    <Content Include="Assets\LargeTile.scale-200.png" />
+    <Content Include="Assets\LargeTile.scale-400.png" />
+    <Content Include="Assets\Logos\Win10Logo.png" />
+    <Content Include="Assets\Logos\Win10MLogo.png" />
+    <Content Include="Assets\SmallTile.scale-100.png" />
+    <Content Include="Assets\SmallTile.scale-125.png" />
+    <Content Include="Assets\SmallTile.scale-150.png" />
+    <Content Include="Assets\SmallTile.scale-200.png" />
+    <Content Include="Assets\SmallTile.scale-400.png" />
+    <Content Include="Assets\SplashScreen.scale-100.png" />
+    <Content Include="Assets\SplashScreen.scale-125.png" />
+    <Content Include="Assets\SplashScreen.scale-150.png" />
+    <Content Include="Assets\SplashScreen.scale-400.png" />
+    <Content Include="Assets\Square150x150Logo.scale-100.png" />
+    <Content Include="Assets\Square150x150Logo.scale-125.png" />
+    <Content Include="Assets\Square150x150Logo.scale-150.png" />
+    <Content Include="Assets\Square150x150Logo.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-24.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-32.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-48.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-32.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-48.png" />
+    <Content Include="Assets\Square44x44Logo.scale-100.png" />
+    <Content Include="Assets\Square44x44Logo.scale-125.png" />
+    <Content Include="Assets\Square44x44Logo.scale-150.png" />
+    <Content Include="Assets\Square44x44Logo.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-32.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-48.png" />
+    <Content Include="Assets\StoreLogo.scale-100.png" />
+    <Content Include="Assets\StoreLogo.scale-125.png" />
+    <Content Include="Assets\StoreLogo.scale-150.png" />
+    <Content Include="Assets\StoreLogo.scale-200.png" />
+    <Content Include="Assets\StoreLogo.scale-400.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-100.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-125.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-150.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-400.png" />
+    <Content Include="Properties\Default.rd.xml" />
+    <Content Include="Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="Acknowledgements.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CabFetch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DevicePortalPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FFUSearch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Downloaders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="StoreFetch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FileNamePopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
+      <Version>6.2.12</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.UI.Xaml">
+      <Version>2.1.190405004</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="NiL.JS">
+      <Version>2.5.1514</Version>
+    </PackageReference>
+    <PackageReference Include="System.Runtime.Serialization.Formatters">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Threading.Tasks.Extensions">
+      <Version>4.5.4</Version>
+    </PackageReference>
+    <PackageReference Include="System.Xml.XPath">
+      <Version>4.3.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="libvideo, Version=3.1.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\libvideo.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StoreLibnew\StoreLib\StoreLib.csproj">
+      <Project>{654a0023-fbd5-4b83-848a-997d3b8827f2}</Project>
+      <Name>StoreLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP;CODE_ANALYSIS</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <NoStdLib>true</NoStdLib>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP;CODE_ANALYSIS</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <NoStdLib>true</NoStdLib>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

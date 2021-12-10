@@ -1,0 +1,66 @@
+﻿<Page
+    x:Class="Phone_Helper.CabFetch"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Phone_Helper"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    NavigationCacheMode="Required"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/backdrop.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <RelativePanel HorizontalAlignment="Left">
+        
+        <TextBlock x:Name="pageHeader" Grid.Row="0" HorizontalAlignment="Stretch" RequestedTheme="Dark" Text="W10M Cab Fetcher" RelativePanel.AlignTopWithPanel="True"  VerticalAlignment="Top" FontSize="18"  TextAlignment="Center" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" Margin="40,5,5,5" ManipulationMode="None" FontWeight="Bold"/>
+            <Grid x:Name="grid1" Grid.Row="1" RelativePanel.Below="pageHeader"  >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+        </Grid>
+
+
+            <Grid x:Name="DLGrid"    RelativePanel.Below="pageHeader" HorizontalAlignment="Stretch" Margin="5,5,5,5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+
+            </Grid.RowDefinitions>
+
+                <Grid Grid.Row="1" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <ComboBox x:Name="cabComboBox" Grid.Column="0" MinWidth="200" HorizontalAlignment="Stretch" Margin="5,5,5,5" />
+                    <Button x:Name="ButtonDownload" Click="CabDLBtn_Click" Grid.Column="1" Content="Download" RelativePanel.AlignRightWithPanel="True" Margin="5,5,5,5" Height="32" Width="90"/>
+
+                </Grid>
+
+        </Grid>
+
+            <Button x:Name="ButtonPauseResume" Content="Pause" RelativePanel.AlignHorizontalCenterWith="ProgressBarDownload"  RelativePanel.Below="ProgressBarDownload" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Top" IsEnabled="False" Width="87" Click="ButtonPauseResume_Click"/>
+            <ProgressBar x:Name="ProgressBarDownload"   RelativePanel.Below="TextBlockProgress" HorizontalAlignment="Left" Height="10" Margin="5,5,5,5" VerticalAlignment="Top" Width="390"/>
+            <Button x:Name="LoadListBtn" RelativePanel.AlignLeftWith="ProgressBarDownload" RelativePanel.LeftOf="ButtonPauseResume" RelativePanel.Below="ProgressBarDownload" Margin="5,5,5,5" Content="Load List" Click="LoadList_Click" />
+
+            <TextBlock x:Name="TextBlockProgress"    RelativePanel.Below="TextBlockStatus" HorizontalAlignment="Left" Margin="5,5,5,5" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="15"/>
+            <TextBlock x:Name="TextBlockStatus"   RelativePanel.Below="DLGrid" HorizontalAlignment="Left" Margin="5,5,5,5" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="15"/>
+        </RelativePanel>
+        <RelativePanel x:Name="RPanel1" Grid.Row="2" VerticalAlignment="Stretch"   RelativePanel.Below="DLGrid">
+            <ScrollViewer>
+                <TextBlock x:Name="InfoBox"  TextWrapping="Wrap" HorizontalAlignment="Stretch" ScrollViewer.VerticalScrollMode="Enabled" ScrollViewer.HorizontalScrollMode="Auto" RelativePanel.Below="" RequestedTheme="Dark" Margin="5,5,5,5"  />
+            </ScrollViewer>
+        </RelativePanel>
+    </Grid>
+    
+</Page>
