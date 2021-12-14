@@ -4,15 +4,13 @@ A Simple utility to help users Manage their device with Device Portal, Download 
 
 
 
-
-
 ### What's new in v1.13.16
 
 - Simple Archive Extractor to extract files easily
-- First Test of Github Update checks
+- First Test of Github Update checker
 - General UI fixes
 
-  
+  **[Find the latest release here]([Release Easy-Fetch Pre-release · Empyreal96/Easy-Fetch-UWP (github.com)](https://github.com/Empyreal96/Easy-Fetch-UWP/releases/tag/1.13.16-prerelease))**
 
 ## What can it do?
 
@@ -22,6 +20,8 @@ A Simple utility to help users Manage their device with Device Portal, Download 
 - Download Apps direct from the MS store
 - Download YouTube Videos (Low Quality only for now*)
 - General File Downloader
+- Extract Common Archive Types
+- Check for latest Github Release
 
 *Features, Name and Layout may change over time, screenshots to be updated soon*
 **Youtube: Videos fetched are set to lower quality, this is due to two limitations, 1) Need to learn how to Mux HD Audio and Video streams likely with FFMPEG. 2) The class used could be nicer, or more packages available that support W10M*
