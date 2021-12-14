@@ -6,11 +6,11 @@ A Simple utility to help users Manage their device with Device Portal, Download 
 
 
 
-### What's new in v1.13.14
+### What's new in v1.13.16
 
-- Fixed Cab Downloader output not being Scroll-able
-
-- Fixed issue with Crashes loading .txt cab lists
+- Simple Archive Extractor to extract files easily
+- First Test of Github Update checks
+- General UI fixes
 
   
 
