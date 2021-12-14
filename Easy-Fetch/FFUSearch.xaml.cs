@@ -172,7 +172,7 @@ namespace Phone_Helper
                     StorageFolder folder = await folderPicker.PickSingleFolderAsync();
                     if (folder == null)
                     {
-                        SearchOutput.Text = "";
+                        SearchOutput.Text = "No Folder Selected";
                         ProgRing.IsEnabled = false;
                         ProgRing.IsActive = false;
                         ProgRing.Visibility = Visibility.Collapsed;

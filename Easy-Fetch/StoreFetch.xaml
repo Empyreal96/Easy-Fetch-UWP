@@ -13,27 +13,93 @@
     <Grid Padding="10,5,10,5">
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition
+                Height="Auto"></RowDefinition>
+            <RowDefinition 
+                Height="*"></RowDefinition>
         </Grid.RowDefinitions>
+        
         <Grid.Background>
-            <ImageBrush ImageSource="/Assets/backdrop.jpg" Stretch="UniformToFill"/>
+            <ImageBrush 
+                ImageSource="/Assets/backdrop.jpg" 
+                Stretch="UniformToFill"/>
+            
         </Grid.Background>
-        <ProgressRing x:Name="LoadingRing" IsActive="True" VerticalAlignment="Top" Height="76" Margin="0,61,0,0" Width="76" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+        <ProgressRing
+            x:Name="LoadingRing"
+            IsActive="True" 
+            VerticalAlignment="Top" 
+            Height="76"
+            Margin="0,61,0,0" 
+            Width="76" 
+            Grid.Row="1" 
+            ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
 
         <StackPanel>
-            <TextBlock Margin="0,8,10,0" HorizontalAlignment="Stretch" FontFamily="Segoe UI" FontSize="16"  FontWeight="Bold" TextAlignment="Center"><Run Text="Store Fetcher"/><LineBreak/><Run Text="Download Appx's from the Store"/></TextBlock>
-            <TextBox x:Name="StoreSearchText" Text="" TextWrapping="Wrap" PlaceholderText="Search Apps Here..." Padding="10,3,6,6" Margin="5,14,5,0" VerticalAlignment="Top"/>
+            <TextBlock
+                Margin="0,8,10,0" 
+                HorizontalAlignment="Stretch"
+                FontFamily="Segoe UI"
+                FontSize="16" 
+                FontWeight="Bold" 
+                TextAlignment="Center">
+                <Run Text="Store Fetcher"/>
+                <LineBreak/>
+                <Run Text="Download Appx's from the Store"/>
+            </TextBlock>
+            <TextBox 
+                x:Name="StoreSearchText"
+                Text="" 
+                TextWrapping="Wrap"
+                PlaceholderText="Search Apps Here..."
+                Padding="10,3,6,6" 
+                Margin="5,14,5,0"
+                VerticalAlignment="Top"/>
 
-            <Grid HorizontalAlignment="Stretch">
-                <Button x:Name="StoreSearchBtn" Click="StoreSearchBtn_Click" Content="Search" HorizontalAlignment="Right" Margin="0,5,5,0"/>
-                <RadioButton x:Name="MobileRadio" Content="Mobile" Margin="10,7,0,0" VerticalAlignment="Top" GroupName="Family"/>
-                <RadioButton x:Name="DesktopRadio" Content="Desktop" Margin="98,7,0,0" VerticalAlignment="Top" GroupName="Family"/>
+            <Grid 
+                HorizontalAlignment="Stretch">
+                <Button
+                    x:Name="StoreSearchBtn"
+                    Click="StoreSearchBtn_Click"
+                    Content="Search"
+                    HorizontalAlignment="Right"
+                    Margin="0,5,5,0"/>
+                
+                <RadioButton 
+                    x:Name="MobileRadio" 
+                    Content="Mobile"
+                    Margin="10,7,0,0"
+                    VerticalAlignment="Top" 
+                    GroupName="Family"/>
+                
+                <RadioButton 
+                    x:Name="DesktopRadio"
+                    Content="Desktop"
+                    Margin="98,7,0,0"
+                    VerticalAlignment="Top" 
+                    GroupName="Family"/>
             </Grid>
             <ScrollViewer>
-                <TextBox x:Name="OutputText" Width="auto" Height="Auto" Text="" TextWrapping="Wrap" Background="{x:Null}" Margin="5,5,5,0" BorderBrush="{x:Null}" ScrollViewer.IsVerticalRailEnabled="True" ScrollViewer.VerticalScrollMode="Enabled"/>
+                <TextBox 
+                    x:Name="OutputText" 
+                    Width="auto"
+                    Height="Auto"
+                    Text="" 
+                    TextWrapping="Wrap" 
+                    Background="{x:Null}"
+                    Margin="5,5,5,0"
+                    BorderBrush="{x:Null}"
+                    ScrollViewer.IsVerticalRailEnabled="True"
+                    ScrollViewer.VerticalScrollMode="Enabled"/>
+                
             </ScrollViewer>
         </StackPanel>
-        <Grid x:Name="StoreGrid" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Visibility="Visible"  Margin="0,56,0,0" />
+        <Grid 
+            x:Name="StoreGrid" 
+            HorizontalAlignment="Stretch" 
+            Grid.Row="1" 
+            VerticalAlignment="Stretch"
+            Visibility="Visible" 
+            Margin="0,56,0,0" />
     </Grid>
 </Page>

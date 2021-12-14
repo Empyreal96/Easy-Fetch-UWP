@@ -11,6 +11,7 @@ using Windows.Foundation.Collections;
 using Windows.Networking.BackgroundTransfer;
 using Windows.Storage;
 using Windows.Storage.Pickers;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -38,6 +39,7 @@ namespace Phone_Helper
         public static String[] userList { get; set; }
         public static string userChoice { get; set; }
         public static string build { get; set; }
+        public static int currentFetchedCount { get; set; }
 
         DownloadOperation downloadOperation;
         CancellationTokenSource cancellationToken;
@@ -51,8 +53,15 @@ namespace Phone_Helper
             userChoice = "No";
            // ButtonCancel.Visibility = Visibility.Collapsed;
             InfoBox.Text = "Select your desired build, Progress wll be shown here.\n" +
-                "All archives for the selected build will be fetched\n\n" +
-                "This will take time.";
+                "All archives for the selected build will be fetched, This will take time.\n\n" +
+                "Available Builds:\n" +
+                "10.0.10549.4\n" +
+                "10.0.10570.0\n" +
+                "10.0.10586.107\n" +
+                "10.0.14393.1066\n" +
+                "10.0.15063.297\n" +
+                "10.0.15254.603\n" +
+                "10.0.16212.1000 (rs_xbox)\n";
             cabComboBox.Items.Add("10.0.10549.4");
             cabComboBox.Items.Add("10.0.10570.0");
             cabComboBox.Items.Add("10.0.10586.107");
@@ -86,6 +95,7 @@ namespace Phone_Helper
             if (userChoice == "Yes")
             {
                 InfoBox.Text = $"{userList.Count().ToString()} Files to Download:\n";
+                
                 if (folder.GetFolderAsync(build) == null)
                 {
                   
@@ -95,13 +105,17 @@ namespace Phone_Helper
                 {
 
                     await InitDownload(list, build, folder);
+                    fileCount.Text = $"File {currentFetchedCount}/{userList.Count()}";
                 }
+
+                DownloadCompleted();
             }
 
             if (cabComboBox.SelectedItem == "10.0.10549.4")
             {
                 BuildLinks.firstBuildList();
                 InfoBox.Text = $"{firstList.Count().ToString()} Files to Download:\n";
+                
                 build = "10.0.10549.4";
                 if (folder.GetFolderAsync(build) == null)
                 {
@@ -112,8 +126,9 @@ namespace Phone_Helper
                 {
 
                     await InitDownload(list, build, folder);
-
+                    fileCount.Text = $"File {currentFetchedCount}/{firstList.Count()}";
                 }
+                DownloadCompleted();
             }
 
 
@@ -122,6 +137,7 @@ namespace Phone_Helper
             {
                 BuildLinks.secondBuildList();
                 InfoBox.Text = $"{secondList.Count().ToString()} Files to Download:\n";
+                
                 build = "10.0.10570.0";
                 if (folder.GetFolderAsync(build) == null)
                 {
@@ -131,8 +147,9 @@ namespace Phone_Helper
                 foreach (string list in secondList)
                 {
                     await InitDownload(list, build, folder);
-
+                    fileCount.Text = $"File {currentFetchedCount}/{secondList.Count()}";
                 }
+                DownloadCompleted();
             }
 
 
@@ -140,6 +157,7 @@ namespace Phone_Helper
             {
                 BuildLinks.thirdBuildList();
                 InfoBox.Text = $"{thirdList.Count().ToString()} Files to Download:\n";
+                
                 build = "10.0.10586.107";
                 if (folder.GetFolderAsync(build) == null)
                 {
@@ -149,14 +167,16 @@ namespace Phone_Helper
                 foreach (string list in thirdList)
                 {
                     await InitDownload(list, build, folder);
-
+                    fileCount.Text = $"File {currentFetchedCount}/{thirdList.Count()}";
                 }
+                DownloadCompleted();
             }
 
             if (cabComboBox.SelectedItem == "10.0.14393.1066")
             {
                 BuildLinks.fourthBuildList();
                 InfoBox.Text = $"{fourthList.Count().ToString()} Files to Download:\n";
+                
                 build = "10.0.14393.1066";
                 if (folder.GetFolderAsync(build) == null)
                 {
@@ -166,14 +186,16 @@ namespace Phone_Helper
                 foreach (string list in fourthList)
                 {
                     await InitDownload(list, build, folder);
-
+                    fileCount.Text = $"File {currentFetchedCount}/{fourthList.Count()}";
                 }
+                DownloadCompleted();
             }
             
             if (cabComboBox.SelectedItem == "10.0.15063.297")
             {
                 BuildLinks.fifthBuildList();
                 InfoBox.Text = $"{fifthList.Count().ToString()} Files to Download:\n";
+                
                 build = "10.0.15063.287";
                 if (folder.GetFolderAsync(build) == null)
                 {
@@ -183,14 +205,16 @@ namespace Phone_Helper
                 foreach (string list in fifthList)
                 {
                     await InitDownload(list, build, folder);
-
+                    fileCount.Text = $"File {currentFetchedCount}/{fifthList.Count()}";
                 }
+                DownloadCompleted();
             }
             
             if (cabComboBox.SelectedItem == "10.0.15254.603")
             {
                 BuildLinks.sixthBuildList();
                 InfoBox.Text = $"{sixthList.Count().ToString()} Files to Download:\n";
+                
                 build = "10.0.15254.603";
                 if (folder.GetFolderAsync(build) == null)
                 {
@@ -200,8 +224,9 @@ namespace Phone_Helper
                 foreach (string list in sixthList)
                 {
                     await InitDownload(list, build, folder);
-
+                    fileCount.Text = $"File {currentFetchedCount}/{sixthList.Count()}";
                 }
+                DownloadCompleted();
             }
             
             if (cabComboBox.SelectedItem == "10.0.16212.1000")
@@ -209,6 +234,7 @@ namespace Phone_Helper
 
                 BuildLinks.seventhBuildList();
                 InfoBox.Text = $"{seventhList.Count().ToString()} Files to Download:\n";
+                
                 build = "10.0.16212.1000";
                 if (folder.GetFolderAsync(build) == null)
                 {
@@ -218,11 +244,20 @@ namespace Phone_Helper
                 foreach (string list in seventhList)
                 {
                     await InitDownload(list, build, folder);
-
+                    fileCount.Text = $"File {currentFetchedCount}/{seventhList.Count()}";
                 }
+                DownloadCompleted();
             }
 
 
+        }
+
+        private async void DownloadCompleted()
+        {
+            var DownloadComplete = new MessageDialog("All Files Downloaded");
+            DownloadComplete.Commands.Add(new UICommand("Close"));
+            await DownloadComplete.ShowAsync();
+            currentFetchedCount = 0;
         }
     
         private async void LoadList_Click(object sender, RoutedEventArgs e)
@@ -279,7 +314,16 @@ namespace Phone_Helper
                     TextBlockStatus.Text = "Initializing...";
                     await downloadOperation.StartAsync().AsTask(cancellationToken.Token, progress);
 
-                    InfoBox.Text += $"{list} Downloaded!\n";
+                    if(Path.GetFileName(list).Contains("?dl=1") == true)
+                    {
+                        InfoBox.Text += $"File: {Path.GetFileName(list).Replace(".cab?dl=1", ".cab")} Downloaded!\n\n";
+                    }
+                    else
+                    {
+                        InfoBox.Text += $"File: {Path.GetFileName(list)} Downloaded!\n\n";
+                    }
+
+                    currentFetchedCount = currentFetchedCount + 1;
                 }
                 catch (TaskCanceledException)
                 {
@@ -287,7 +331,7 @@ namespace Phone_Helper
                     await downloadOperation.ResultFile.DeleteAsync();
                     ButtonPauseResume.Content = "Resume";
                     // ButtonCancel.IsEnabled = false;
-
+                    currentFetchedCount = 0;
                     ButtonPauseResume.IsEnabled = false;
                     ButtonDownload.IsEnabled = true;
                     downloadOperation = null;

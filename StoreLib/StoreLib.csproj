@@ -13,7 +13,7 @@
         <RepositoryUrl>https://github.com/StoreDev/StoreLib</RepositoryUrl>
         <PackageLicenseExpression></PackageLicenseExpression>
         <LangVersion>7.1</LangVersion>
-        <Platforms>AnyCPU;x64;x86;ARM;ARM64</Platforms>
+        <Platforms>x64;x86;ARM</Platforms>
     </PropertyGroup>
 
     <ItemGroup>

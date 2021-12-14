@@ -10,7 +10,8 @@
       mc:Ignorable="d">
 
     <Page.Resources>
-        <SolidColorBrush x:Key="NavigationViewExpandedPaneBackground" />
+        <SolidColorBrush 
+            x:Key="NavigationViewExpandedPaneBackground" />
     </Page.Resources>
 
     <Grid Background="#FF555555">
@@ -23,14 +24,45 @@
                                  IsSettingsVisible="False"
                                  ItemInvoked="MainNav_OnItemInvoked">
             <controls:NavigationView.MenuItems>
-                <controls:NavigationViewItem Content="Home" Tag="Home" Icon="Home"/>
-                <!--<controls:NavigationViewItem Content="Tools (In-Progress)" Tag="ToolsPage" Icon="Repair" />-->
-                <controls:NavigationViewItem Content="Device Portal" Tag="DevicePortalPage" Icon="CellPhone" />
-                <controls:NavigationViewItem Content="FFU Search" Tag="FFUSearch" Icon="Download" />
-                <controls:NavigationViewItem Content="W10M Update Fetcher" Tag="CabFetch" Icon="Download" />
-                <controls:NavigationViewItem Content="Store Downloader" Tag="StoreFetch" Icon="Shop" />
-                <controls:NavigationViewItem Content="Downloaders" Tag="Downloaders" Icon="SaveLocal" />
-                <controls:NavigationViewItem Content="Acknowledgments" Tag="Acknowledgements" Icon="People" />
+                <controls:NavigationViewItem 
+                    Content="Home" 
+                    Tag="Home"
+                    Icon="Home"/>
+
+                <controls:NavigationViewItem 
+                    Content="Device Portal"
+                    Tag="DevicePortalPage" 
+                    Icon="CellPhone" />
+                
+                <controls:NavigationViewItem
+                    Content="Simple Archiver" 
+                    Tag="Archiver" 
+                    Icon="NewWindow" />
+                
+                <controls:NavigationViewItem 
+                    Content="FFU Search" 
+                    Tag="FFUSearch" 
+                    Icon="Download" />
+                
+                <controls:NavigationViewItem 
+                    Content="W10M Update Fetcher" 
+                    Tag="CabFetch" 
+                    Icon="Download" />
+                
+                <controls:NavigationViewItem 
+                    Content="Store Fetcher" 
+                    Tag="StoreFetch" 
+                    Icon="Shop" />
+                
+                <controls:NavigationViewItem 
+                    Content="Media Downloaders" 
+                    Tag="Downloaders" 
+                    Icon="SaveLocal" />
+                
+                <controls:NavigationViewItem 
+                    Content="Acknowledgments"
+                    Tag="Acknowledgements" 
+                    Icon="People" />
             </controls:NavigationView.MenuItems>
 
 

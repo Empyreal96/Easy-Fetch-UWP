@@ -7,19 +7,93 @@
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
             NavigationCacheMode="Required"
       RequestedTheme="Dark"
+      
       mc:Ignorable="d">
 
 
     <Grid Margin="0,0,0,0">
         <Grid.Background>
-            <ImageBrush ImageSource="/Assets/backdrop.jpg" Stretch="UniformToFill"/>
+            <ImageBrush 
+                ImageSource="/Assets/backdrop.jpg" 
+                Stretch="UniformToFill"/>
         </Grid.Background>
         <RelativePanel>
-            <TextBox x:Name="PHHeader" Text="Easy-Fetch" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" VerticalAlignment="Top" FontSize="18" TextAlignment="Center" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" Margin="5,5,5,5" ManipulationMode="None" BorderBrush="{x:Null}" Background="{x:Null}" FontWeight="Bold" RequestedTheme="Dark"/>
+            <TextBox
+                x:Name="PHHeader"
+                Text="Easy-Fetch"
+                RelativePanel.AlignTopWithPanel="True"
+                RelativePanel.AlignHorizontalCenterWithPanel="True"
+                VerticalAlignment="Top"
+                FontSize="18"
+                TextAlignment="Center" 
+                IsDoubleTapEnabled="False"
+                IsHoldingEnabled="False"
+                IsRightTapEnabled="False"
+                IsTapEnabled="False"
+                Margin="5,5,5,5" 
+                ManipulationMode="None"
+                BorderBrush="{x:Null}" 
+                Background="{x:Null}" 
+                FontWeight="Bold" 
+                RequestedTheme="Dark"/>
 
-            <Border x:Name="HomeBorder" RelativePanel.Below="PHHeader" Margin="5,5,5,5">
-            <TextBlock x:Name="HomePage" RelativePanel.Below="PHHeader" TextWrapping="Wrap" ScrollViewer.VerticalScrollMode="Enabled" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Height="Auto" FontSize="16" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" TextAlignment="Left" Margin="5,5,5,5" Text="" RequestedTheme="Dark"/>
+            <Border
+                x:Name="HomeBorder"
+                RelativePanel.Below="PHHeader"
+                Margin="5,5,5,5">
+                
+            <TextBlock
+                x:Name="HomePage" 
+                RelativePanel.Below="PHHeader" 
+                TextWrapping="Wrap" 
+                ScrollViewer.VerticalScrollMode="Enabled" 
+                HorizontalAlignment="Stretch" 
+                VerticalAlignment="Stretch"
+                Width="Auto"
+                Height="Auto"
+                FontSize="16"
+                IsDoubleTapEnabled="False" 
+                IsHoldingEnabled="False" 
+                IsRightTapEnabled="False"
+                IsTapEnabled="False" 
+                TextAlignment="Left"
+                Margin="5,5,5,5" 
+                Text=""
+                RequestedTheme="Dark"/>
+                
             </Border>
+            
+            <Frame 
+                x:Name="contentFrame" 
+                RelativePanel.AlignHorizontalCenterWithPanel="True" 
+                RelativePanel.AlignVerticalCenterWithPanel="True"
+                MaxWidth="400"
+                MaxHeight="300"
+                Width="auto"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center" 
+                BorderBrush="#FF333333"/>
+            
+            <TextBlock 
+                x:Name="UpdateOut"
+                RelativePanel.Above="DLUpdate"
+                MinWidth="200" 
+                Height="200" 
+                TextWrapping="Wrap"
+                ScrollViewer.VerticalScrollMode="Enabled" 
+                Margin="5,5,5,5" 
+                HorizontalAlignment="Stretch" 
+                RelativePanel.AlignLeftWithPanel="True"
+                RelativePanel.AlignRightWithPanel="True"/>
+            
+            <Button
+                x:Name="DLUpdate"
+                Click="DLUpdate_Click"
+                HorizontalAlignment="Stretch" 
+                RelativePanel.AlignBottomWithPanel="True"
+                Content="Download Update" 
+                Margin="5,5,5,5"/>
+            
         </RelativePanel>
     </Grid>
 

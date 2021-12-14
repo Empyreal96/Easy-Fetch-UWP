@@ -11,25 +11,79 @@
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition 
+                    Height="Auto"></RowDefinition>
+                <RowDefinition
+                    Height="Auto"></RowDefinition>
+                <RowDefinition
+                    Height="Auto"></RowDefinition>
+                <RowDefinition 
+                    Height="*"></RowDefinition>
             </Grid.RowDefinitions>
+            
             <Grid.Background>
-                <ImageBrush ImageSource="/Assets/backdrop.jpg" Stretch="UniformToFill"/>
+                <ImageBrush 
+                    ImageSource="/Assets/backdrop.jpg" 
+                    Stretch="UniformToFill"/>
             </Grid.Background>
-            <TextBlock Grid.Row="0" HorizontalAlignment="Stretch" RequestedTheme="Dark" Text="Device Portal" VerticalAlignment="Top" FontSize="18"  TextAlignment="Center" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" Margin="0,10,0,0" ManipulationMode="None" FontWeight="Bold"/>
+            
+            <TextBlock 
+                Grid.Row="0" 
+                HorizontalAlignment="Stretch" 
+                RequestedTheme="Dark" 
+                Text="Device Portal" 
+                VerticalAlignment="Top" 
+                FontSize="18" 
+                TextAlignment="Center"
+                IsDoubleTapEnabled="False"
+                IsHoldingEnabled="False"
+                IsRightTapEnabled="False"
+                IsTapEnabled="False"
+                Margin="0,10,0,0"
+                ManipulationMode="None"
+                FontWeight="Bold"/>
+            
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition 
+                        Width="*"></ColumnDefinition>
+                    <ColumnDefinition 
+                        Width="Auto"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <TextBox x:Name="urlBox" RequestedTheme="Dark" Text="https://127.0.0.1" Grid.Column="0" Margin="0,8,0,0"></TextBox>
-                <Button Content="Load" RequestedTheme="Dark" Click="Button_Click" Grid.Column="1" Margin="0,8,0,0"></Button>
+                
+                <TextBox 
+                    x:Name="urlBox" 
+                    RequestedTheme="Dark" 
+                    Text="https://127.0.0.1"
+                    Grid.Column="0" 
+                    Margin="0,8,0,0">
+                    
+                </TextBox>
+                
+                <Button 
+                    Content="Load" 
+                    RequestedTheme="Dark"
+                    Click="Button_Click"
+                    Grid.Column="1"
+                    Margin="0,8,0,0">
+                    
+                </Button>
+                
             </Grid>
-            <ProgressBar Grid.Row="2" RequestedTheme="Dark" x:Name="LoadingPage" Visibility="Collapsed" IsIndeterminate="True"></ProgressBar>
-            <WebView Grid.Row="3" RequestedTheme="Dark" x:Name="devportalweb" VerticalAlignment="Stretch" />
+            <ProgressBar 
+                Grid.Row="2" 
+                RequestedTheme="Dark"
+                x:Name="LoadingPage" 
+                Visibility="Collapsed"
+                IsIndeterminate="True">
+                
+            </ProgressBar>
+            
+            <WebView 
+                Grid.Row="3"
+                RequestedTheme="Dark" 
+                x:Name="devportalweb"
+                VerticalAlignment="Stretch" />
         </Grid>
     </Grid>
 

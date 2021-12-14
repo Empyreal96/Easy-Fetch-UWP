@@ -12,74 +12,264 @@
 
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/Assets/backdrop.jpg" Stretch="UniformToFill"/>
+            <ImageBrush 
+                ImageSource="/Assets/backdrop.jpg"
+                Stretch="UniformToFill"/>
         </Grid.Background>
-        <Pivot Title="          Downloaders" >
-            <PivotItem Header="Youtube">
+        
+        <Pivot 
+            Title="          Downloaders" >
+            <PivotItem 
+                Header="Youtube">
                 <RelativePanel>
-                    <Grid x:Name="YTGrid" RelativePanel.AlignHorizontalCenterWithPanel="True" HorizontalAlignment="Stretch">
+                    <Grid 
+                        x:Name="YTGrid" 
+                        RelativePanel.AlignRightWithPanel="True"
+                        RelativePanel.AlignLeftWithPanel="True"
+                        HorizontalAlignment="Stretch">
+                        
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition 
+                                Height="*"></RowDefinition>
 
                         </Grid.RowDefinitions>
 
-                        <Grid Grid.Row="1">
+                        <Grid Grid.Row="1" >
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
-                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                <ColumnDefinition 
+                                    Width="*"></ColumnDefinition>
+                                <ColumnDefinition 
+                                    Width="auto"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <TextBox x:Name="DownloaderYTHeader" Grid.Column="0" Width="auto"  PlaceholderText="https://www.youtube.com/watch?v=qXdPoL1yQsA" HorizontalAlignment="Stretch" Margin="5,5,5,5" Padding="0,0,0,0" BorderBrush="{x:Null}" Background="{x:Null}"/>
+                            
+                            <TextBox
+                                x:Name="DownloaderYTHeader"
+                                Grid.Column="0" 
+                                Width="auto" 
+                                PlaceholderText="https://www.youtube.com/watch?v=qXdPoL1yQsA"
+                                HorizontalAlignment="Stretch" 
+                                Margin="5,5,5,5" 
+                                Padding="0,0,0,0" 
+                                BorderBrush="{x:Null}" 
+                                Background="{x:Null}"/>
 
-                            <Button x:Name="YTSearchBtn" Click="YTSearchBtn_Click" Grid.Column="1" Content="Search" RelativePanel.AlignRightWithPanel="True" Margin="5,5,5,5" Height="32" Width="84"/>
+                            <Button
+                                x:Name="YTSearchBtn" 
+                                Click="YTSearchBtn_Click"
+                                Grid.Column="1"
+                                Content="Search" 
+                                RelativePanel.AlignRightWithPanel="True" 
+                                Margin="5,5,5,5" 
+                                Height="32"
+                                Width="84"/>
                         </Grid>
                     </Grid>
 
-                    <Button x:Name="YTDownloadBtn" Click="YTDownloadBtn_Click" Content="Download Video"  RelativePanel.Below="YTGrid" Margin="5,5,5,5" Padding="0,0,0,0" Height="32" Width="125" />
-                    <Button x:Name="YTDownloadMP3Btn" Click="YTDownloadMP3Btn_Click" Content="Download MP3" RelativePanel.RightOf="YTDownloadBtn" RelativePanel.Below="YTGrid" Margin="5,5,5,5" Padding="0,0,0,0" Height="32" Width="120" />
+                    <Button 
+                        x:Name="YTDownloadBtn"
+                        Click="YTDownloadBtn_Click"
+                        Content="Download Video" 
+                        RelativePanel.Below="YTGrid"
+                        Margin="5,5,5,5" 
+                        Padding="0,0,0,0"
+                        Height="32"
+                        Width="125" />
+                    
+                    <Button 
+                        x:Name="YTDownloadMP3Btn" 
+                        Click="YTDownloadMP3Btn_Click"
+                        Content="Download MP3"
+                        RelativePanel.RightOf="YTDownloadBtn" 
+                        RelativePanel.Below="YTGrid" 
+                        Margin="5,5,5,5"
+                        Padding="0,0,0,0"
+                        Height="32"
+                        Width="120" />
 
-                    <TextBox x:Name="ProgressText" Width="auto" HorizontalAlignment="Stretch" RelativePanel.RightOf="YTDownloadMP3Btn" RelativePanel.Below="YTGrid" Margin="5,5,5,5" BorderBrush="{x:Null}" Background="{x:Null}"/>
-                    <ProgressRing x:Name="ProgRing" Width="74" Height="74" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>
+                    <TextBox 
+                        x:Name="ProgressText" 
+                        Width="auto"
+                        HorizontalAlignment="Stretch" 
+                        RelativePanel.RightOf="YTDownloadMP3Btn"
+                        RelativePanel.Below="YTGrid"
+                        Margin="5,5,5,5" 
+                        BorderBrush="{x:Null}" 
+                        Background="{x:Null}"/>
+                    
+                    <ProgressRing 
+                        x:Name="ProgRing"
+                        Width="74" 
+                        Height="74" 
+                        RelativePanel.AlignHorizontalCenterWithPanel="True"
+                        RelativePanel.AlignVerticalCenterWithPanel="True"/>
 
-                    <Border x:Name="YTThumbnailBorder" RelativePanel.Below="YTDownloadBtn" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,5">
-                        <Image x:Name="YTThumbnail" RelativePanel.Below="YTSearchBtn" HorizontalAlignment="Stretch" Height="auto" Margin="5,5,5,5" />
+                    <Border 
+                        x:Name="YTThumbnailBorder" 
+                        RelativePanel.Below="YTDownloadBtn"
+                        HorizontalAlignment="Stretch" 
+                        VerticalAlignment="Stretch"
+                        Margin="5,5,5,5">
+                        
+                        <Image 
+                            x:Name="YTThumbnail"
+                            RelativePanel.Below="YTSearchBtn"
+                            HorizontalAlignment="Stretch"
+                            Height="auto"
+                            Margin="5,5,5,5" />
+                        
                     </Border>
-                    <ScrollViewer x:Name="YTInfoScroll" RelativePanel.Below="YTThumbnailBorder" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <Border x:Name="YTInfoBorder" Width="auto" ScrollViewer.VerticalScrollMode="Enabled" MinWidth="250" RelativePanel.Below="YTThumbnailBorder" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Margin="5,5,5,5">
+                    <ScrollViewer
+                        x:Name="YTInfoScroll"
+                        RelativePanel.Below="YTThumbnailBorder" 
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
+                        
+                        <Border 
+                            x:Name="YTInfoBorder" 
+                            Width="auto" 
+                            ScrollViewer.VerticalScrollMode="Enabled" 
+                            MinWidth="250"
+                            RelativePanel.Below="YTThumbnailBorder"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"  
+                            Margin="5,5,5,5">
 
-                            <TextBlock x:Name="YTSearchOutput" ScrollViewer.VerticalScrollMode="Enabled" TextWrapping="Wrap" RelativePanel.Below="YTThumbnail" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,5,5" Padding="0,0,0,0" FontSize="14"/>
+                            <TextBlock
+                                x:Name="YTSearchOutput"
+                                ScrollViewer.VerticalScrollMode="Enabled" 
+                                TextWrapping="Wrap"
+                                RelativePanel.Below="YTThumbnail"
+                                HorizontalAlignment="Stretch" 
+                                VerticalAlignment="Stretch"
+                                Margin="5,5,5,5"
+                                Padding="0,0,0,0"
+                                FontSize="14"/>
                         </Border>
                     </ScrollViewer>
                 </RelativePanel>
             </PivotItem>
-            <PivotItem Header="Files">
+            <PivotItem 
+                Header="Files">
                 <RelativePanel>
-                    <Grid x:Name="DLGrid" RelativePanel.AlignLeftWithPanel="True" HorizontalAlignment="Stretch" Margin="5,5,5,5">
+                    <Grid 
+                        x:Name="DLGrid"
+                        RelativePanel.AlignLeftWithPanel="True"
+                        RelativePanel.AlignRightWithPanel="True"
+                        HorizontalAlignment="Stretch"
+                        Margin="5,5,5,5">
+                        
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition 
+                                Height="*"></RowDefinition>
 
                         </Grid.RowDefinitions>
                         <RelativePanel>
-                            <Grid Grid.Row="1" >
+                            <Grid 
+                                Grid.Row="1"
+                                RelativePanel.AlignLeftWithPanel="True" 
+                                RelativePanel.AlignRightWithPanel="True" >
+                                
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    <ColumnDefinition 
+                                        Width="*"></ColumnDefinition>
+                                    <ColumnDefinition
+                                        Width="auto"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
 
-                                <TextBox x:Name="DownloaderFileHeader"  Grid.Column="0" Width="auto" MinWidth="200"  PlaceholderText="https://7-zip.org/a/7z2100-arm.exe" HorizontalAlignment="Stretch" Margin="5,5,5,5" Padding="0,0,0,0" BorderBrush="{x:Null}" Background="{x:Null}"/>
-                                <Button x:Name="ButtonDownload" Click="FileDownloadBtn_Click" Grid.Column="1" Content="Download" RelativePanel.AlignRightWithPanel="True" Margin="5,5,5,5" Height="32" Width="90"/>
+                                <TextBox 
+                                    x:Name="DownloaderFileHeader"  
+                                    Grid.Column="0"
+                                    Width="auto"
+                                    MinWidth="200" 
+                                    PlaceholderText="https://7-zip.org/a/7z2100-arm.exe" 
+                                    HorizontalAlignment="Stretch"
+                                    Margin="5,5,5,5" 
+                                    Padding="0,0,0,0"
+                                    BorderBrush="{x:Null}" 
+                                    Background="{x:Null}"/>
+                                
+                                <Button
+                                    x:Name="ButtonDownload"
+                                    Click="FileDownloadBtn_Click"
+                                    Grid.Column="1" 
+                                    Content="Download" 
+                                    RelativePanel.AlignRightWithPanel="True" 
+                                    Margin="5,5,5,5" 
+                                    Height="32" 
+                                    Width="90"/>
 
                             </Grid>
                         </RelativePanel>
                     </Grid>
 
-                    <Button x:Name="ButtonPauseResume" Content="Pause" RelativePanel.Below="ProgressBarDownload" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Top" IsEnabled="False" Width="87" Click="ButtonPauseResume_Click"/>
-                    <Button x:Name="ButtonCancel" Content="Cancel" RelativePanel.Below="ProgressBarDownload" RelativePanel.RightOf="ButtonPauseResume" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Top" IsEnabled="False" Width="87" Click="ButtonCancel_Click"/>
-                    <ProgressBar x:Name="ProgressBarDownload" RelativePanel.Below="TextBlockProgress" HorizontalAlignment="Left" Height="10" Margin="5,5,5,5" VerticalAlignment="Top" Width="390"/>
-                    <TextBlock x:Name="TextBlockProgress"  RelativePanel.Below="TextBlockStatus" HorizontalAlignment="Left" Margin="5,5,5,5" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="15"/>
-                    <TextBlock x:Name="TextBlockStatus" RelativePanel.Below="DLGrid" HorizontalAlignment="Left" Margin="5,5,5,5" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="15"/>
-                    <Frame x:Name="contentFrame" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" MaxWidth="400" MaxHeight="300" Width="auto" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="#FF333333"/>
+                    <Button 
+                        x:Name="ButtonPauseResume"
+                        Content="Pause" 
+                        RelativePanel.Below="ProgressBarDownload"
+                        HorizontalAlignment="Left"
+                        Margin="5,5,5,5"
+                        VerticalAlignment="Top"
+                        IsEnabled="False"
+                        Width="87" 
+                        Click="ButtonPauseResume_Click"/>
+                    
+                    <Button 
+                        x:Name="ButtonCancel" 
+                        Content="Cancel" 
+                        RelativePanel.Below="ProgressBarDownload" 
+                        RelativePanel.RightOf="ButtonPauseResume"
+                        HorizontalAlignment="Left"
+                        Margin="5,5,5,5"
+                        VerticalAlignment="Top" 
+                        IsEnabled="False"
+                        Width="87" 
+                        Click="ButtonCancel_Click"/>
+                    
+                    <ProgressBar 
+                        x:Name="ProgressBarDownload" 
+                        RelativePanel.Below="TextBlockProgress" 
+                        RelativePanel.AlignLeftWithPanel="True"
+                        RelativePanel.AlignRightWithPanel="True"
+                        HorizontalAlignment="Stretch" 
+                        Height="10"
+                        Margin="5,5,5,5"
+                        VerticalAlignment="Top"/>
+                    
+                    <TextBlock 
+                        x:Name="TextBlockProgress"  
+                        RelativePanel.Below="TextBlockStatus"
+                        HorizontalAlignment="Left"
+                        Margin="5,5,5,5"
+                        TextWrapping="Wrap"
+                        VerticalAlignment="Top"
+                        FontSize="15"/>
+                    
+                    <TextBlock 
+                        x:Name="TextBlockStatus" 
+                        RelativePanel.Below="DLGrid" 
+                        HorizontalAlignment="Left"
+                        Margin="5,5,5,5" 
+                        TextWrapping="Wrap" 
+                        VerticalAlignment="Top" 
+                        FontSize="15"/>
+                    
+                    <Frame 
+                        x:Name="contentFrame"
+                        RelativePanel.AlignHorizontalCenterWithPanel="True" 
+                        RelativePanel.AlignVerticalCenterWithPanel="True"
+                        MaxWidth="400"
+                        MaxHeight="300"
+                        Width="auto"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        BorderBrush="#FF333333"/>
 
-                    <ProgressRing x:Name="FileProgRing" Width="74" Height="74" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>
+                    <ProgressRing 
+                        x:Name="FileProgRing"
+                        Width="74"
+                        Height="74" 
+                        RelativePanel.AlignHorizontalCenterWithPanel="True"
+                        RelativePanel.AlignVerticalCenterWithPanel="True"/>
 
 
 

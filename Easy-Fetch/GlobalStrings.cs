@@ -10,5 +10,6 @@ namespace Phone_Helper
     {
         public static string Downloaders_GeneralDownloaderFileName { get; set; }
         public static bool FileNameAccepted { get; set; }
+        public static string Logger { get; set; }
     }
 }

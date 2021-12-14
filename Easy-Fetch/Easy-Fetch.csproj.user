@@ -9,14 +9,14 @@
     <AppxShowAllApps>False</AppxShowAllApps>
     <AppxBuildConfigurationSelection>x86|x64|arm</AppxBuildConfigurationSelection>
     <PackageOptionalProjectsInIdeBuilds>False</PackageOptionalProjectsInIdeBuilds>
-    <Source>C:\Users\Empyreal96\Downloads\windows-icon2.png</Source>
-    <SmallTileSource>C:\Users\Empyreal96\Downloads\windows-icon2.png</SmallTileSource>
-    <MediumTileSource>C:\Users\Empyreal96\Downloads\windows-icon2.png</MediumTileSource>
-    <WideTileSource>C:\Users\Empyreal96\Downloads\windows-icon2.png</WideTileSource>
-    <LargeTileSource>C:\Users\Empyreal96\Downloads\windows-icon2.png</LargeTileSource>
-    <AppIconSource>C:\Users\Empyreal96\Downloads\windows-icon2.png</AppIconSource>
-    <SplashScreenSource>C:\Users\Empyreal96\Downloads\windows-icon2.png</SplashScreenSource>
-    <PackageLogoSource>C:\Users\Empyreal96\Downloads\windows-icon2.png</PackageLogoSource>
+    <Source>C:\Users\Empyreal96\Downloads\easyfetchicon.png</Source>
+    <SmallTileSource>C:\Users\Empyreal96\Downloads\easyfetchicon.png</SmallTileSource>
+    <MediumTileSource>C:\Users\Empyreal96\Downloads\easyfetchicon.png</MediumTileSource>
+    <WideTileSource>C:\Users\Empyreal96\Downloads\easyfetchicon.png</WideTileSource>
+    <LargeTileSource>C:\Users\Empyreal96\Downloads\easyfetchicon.png</LargeTileSource>
+    <AppIconSource>C:\Users\Empyreal96\Downloads\easyfetchicon.png</AppIconSource>
+    <SplashScreenSource>C:\Users\Empyreal96\Pictures\easyfetch.png</SplashScreenSource>
+    <PackageLogoSource>C:\Users\Empyreal96\Downloads\easyfetchicon.png</PackageLogoSource>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
     <DeviceId>30f105c9-681e-420b-a277-7c086ead8a4e</DeviceId>

@@ -24,6 +24,11 @@ using Windows.Networking.BackgroundTransfer;
 using System.Threading;
 using Windows.Data.Xml.Dom;
 using Windows.UI.Notifications;
+using Windows.Media.Editing;
+using Windows.Media.MediaProperties;
+using Windows.Media.Transcoding;
+
+
 
 
 
@@ -205,6 +210,7 @@ namespace Phone_Helper
 
         public async Task SaveVideoToDisk(string DLlink)
         {
+            
             ProgRing.IsEnabled = true;
             ProgRing.IsActive = true;
             ProgRing.Visibility = Visibility.Visible;
@@ -329,10 +335,10 @@ namespace Phone_Helper
         /// <param name="DLLink"></param>
         public async void TestFFMPEG()
         {
-
+            
         }
 
-
+        
 
 
 

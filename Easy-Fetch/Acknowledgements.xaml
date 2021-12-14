@@ -10,15 +10,40 @@
           NavigationCacheMode="Required"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid Padding="10,5,10,5">
+    <Grid 
+        Padding="10,5,10,5">
+        
         <Grid.Background>
-            <ImageBrush ImageSource="/Assets/backdrop.jpg" Stretch="UniformToFill"/>
+            <ImageBrush 
+                ImageSource="/Assets/backdrop.jpg" 
+                Stretch="UniformToFill"/>
         </Grid.Background>
+        
         <StackPanel>
             
-        <TextBox Margin="10,15,10,0" Text="Acknowledgments" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center" TextAlignment="Center" BorderBrush="{x:Null}" FontSize="16" Background="{x:Null}" FontWeight="Bold"/>
+        <TextBox 
+            Margin="10,15,10,0" 
+            Text="Acknowledgments" 
+            TextWrapping="Wrap" 
+            VerticalAlignment="Top" 
+            HorizontalAlignment="Center" 
+            TextAlignment="Center" 
+            BorderBrush="{x:Null}" 
+            FontSize="16" 
+            Background="{x:Null}" 
+            FontWeight="Bold"/>
+            
             <ScrollViewer>
-                <TextBlock x:Name="CreditsBox" ScrollViewer.VerticalScrollMode="Enabled" HorizontalAlignment="Stretch" Margin="5,5,5,5" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="Auto" Height="Auto"/>
+                <TextBlock 
+                    x:Name="CreditsBox" 
+                    ScrollViewer.VerticalScrollMode="Enabled" 
+                    HorizontalAlignment="Stretch" 
+                    Margin="5,5,5,5" 
+                    Text="" 
+                    TextWrapping="Wrap" 
+                    VerticalAlignment="Top" 
+                    Width="Auto" 
+                    Height="Auto"/>
             </ScrollViewer>
         </StackPanel>
     </Grid>

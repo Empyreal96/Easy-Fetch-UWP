@@ -11,55 +11,181 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="*" ScrollViewer.VerticalScrollMode="Enabled"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition 
+                Height="Auto"></RowDefinition>
+            <RowDefinition 
+                Height="Auto"></RowDefinition>
+            <RowDefinition 
+                Height="*" 
+                ScrollViewer.VerticalScrollMode="Enabled"></RowDefinition>
+            <RowDefinition 
+                Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
+        
         <Grid.Background>
-            <ImageBrush ImageSource="/Assets/backdrop.jpg" Stretch="UniformToFill"/>
+            <ImageBrush 
+                ImageSource="/Assets/backdrop.jpg" 
+                Stretch="UniformToFill"/>
         </Grid.Background>
 
-        <RelativePanel HorizontalAlignment="Left">
+        <RelativePanel 
+            HorizontalAlignment="Left">
         
-        <TextBlock x:Name="pageHeader" Grid.Row="0" HorizontalAlignment="Stretch" RequestedTheme="Dark" Text="W10M Cab Fetcher" RelativePanel.AlignTopWithPanel="True"  VerticalAlignment="Top" FontSize="18"  TextAlignment="Center" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" Margin="40,5,5,5" ManipulationMode="None" FontWeight="Bold"/>
-            <Grid x:Name="grid1" Grid.Row="1" RelativePanel.Below="pageHeader"  >
+        <TextBlock 
+            x:Name="pageHeader" 
+            Grid.Row="0" 
+            HorizontalAlignment="Stretch" 
+            RequestedTheme="Dark" 
+            Text="W10M Cab Fetcher" 
+            RelativePanel.AlignTopWithPanel="True" 
+            VerticalAlignment="Top"
+            FontSize="18" 
+            TextAlignment="Center"
+            IsDoubleTapEnabled="False"
+            IsHoldingEnabled="False" 
+            IsRightTapEnabled="False" 
+            IsTapEnabled="False" 
+            Margin="40,5,5,5" 
+            ManipulationMode="None" 
+            FontWeight="Bold"/>
+            
+            <Grid 
+                x:Name="grid1" 
+                Grid.Row="1" 
+                RelativePanel.Below="pageHeader"  >
+                
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition 
+                    Width="*"></ColumnDefinition>
+                <ColumnDefinition 
+                    Width="Auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
         </Grid>
 
 
-            <Grid x:Name="DLGrid"    RelativePanel.Below="pageHeader" HorizontalAlignment="Stretch" Margin="5,5,5,5">
+            <Grid 
+                x:Name="DLGrid" 
+                RelativePanel.Below="pageHeader" 
+                HorizontalAlignment="Stretch" 
+                Margin="5,5,5,5">
+                
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition 
+                    Height="*"></RowDefinition>
 
             </Grid.RowDefinitions>
 
-                <Grid Grid.Row="1" >
+                <Grid 
+                    Grid.Row="1" >
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition 
+                            Width="auto"></ColumnDefinition>
+                        <ColumnDefinition 
+                            Width="auto"></ColumnDefinition>
+                        <ColumnDefinition 
+                            Width="auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
 
-                    <ComboBox x:Name="cabComboBox" Grid.Column="0" MinWidth="200" HorizontalAlignment="Stretch" Margin="5,5,5,5" />
-                    <Button x:Name="ButtonDownload" Click="CabDLBtn_Click" Grid.Column="1" Content="Download" RelativePanel.AlignRightWithPanel="True" Margin="5,5,5,5" Height="32" Width="90"/>
-
+                    <ComboBox 
+                        x:Name="cabComboBox"
+                        Grid.Column="0" 
+                        MinWidth="200"
+                        HorizontalAlignment="Stretch"
+                        Margin="5,5,5,5" />
+                    
+                    <Button 
+                        x:Name="ButtonDownload"
+                        Click="CabDLBtn_Click"
+                        Grid.Column="1" 
+                        Content="Download" 
+                        RelativePanel.AlignRightWithPanel="True"
+                        Margin="5,5,5,5" 
+                        Height="32"
+                        Width="90"/>
+                    
+                    <TextBox 
+                        x:Name="fileCount"
+                        Grid.Column="2"
+                        IsReadOnly="True"
+                        IsTextPredictionEnabled="False" 
+                        IsTabStop="False" 
+                        IsHitTestVisible="False" 
+                        Margin="5,5,5,5"
+                        Background="{x:Null}" 
+                        BorderBrush="{x:Null}" />
                 </Grid>
 
         </Grid>
 
-            <Button x:Name="ButtonPauseResume" Content="Pause" RelativePanel.AlignHorizontalCenterWith="ProgressBarDownload"  RelativePanel.Below="ProgressBarDownload" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Top" IsEnabled="False" Width="87" Click="ButtonPauseResume_Click"/>
-            <ProgressBar x:Name="ProgressBarDownload"   RelativePanel.Below="TextBlockProgress" HorizontalAlignment="Left" Height="10" Margin="5,5,5,5" VerticalAlignment="Top" Width="390"/>
-            <Button x:Name="LoadListBtn" RelativePanel.AlignLeftWith="ProgressBarDownload" RelativePanel.LeftOf="ButtonPauseResume" RelativePanel.Below="ProgressBarDownload" Margin="5,5,5,5" Content="Load List" Click="LoadList_Click" />
+            <Button 
+                x:Name="ButtonPauseResume"
+                Content="Pause" 
+                RelativePanel.AlignHorizontalCenterWith="ProgressBarDownload" 
+                RelativePanel.Below="ProgressBarDownload"
+                HorizontalAlignment="Left"
+                Margin="5,5,5,5"
+                VerticalAlignment="Top"
+                IsEnabled="False"
+                Width="87" 
+                Click="ButtonPauseResume_Click"/>
+            
+            <ProgressBar 
+                x:Name="ProgressBarDownload"  
+                RelativePanel.Below="TextBlockProgress" 
+                MinWidth="390"
+                HorizontalAlignment="Stretch"
+                Height="10" 
+                Margin="5,5,5,5" 
+                VerticalAlignment="Top"/>
+            
+            <Button 
+                x:Name="LoadListBtn"
+                RelativePanel.AlignLeftWith="ProgressBarDownload" 
+                RelativePanel.LeftOf="ButtonPauseResume"
+                RelativePanel.Below="ProgressBarDownload"
+                Margin="5,5,5,5" 
+                Content="Load List"
+                Click="LoadList_Click" />
 
-            <TextBlock x:Name="TextBlockProgress"    RelativePanel.Below="TextBlockStatus" HorizontalAlignment="Left" Margin="5,5,5,5" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="15"/>
-            <TextBlock x:Name="TextBlockStatus"   RelativePanel.Below="DLGrid" HorizontalAlignment="Left" Margin="5,5,5,5" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="15"/>
+            <TextBlock
+                x:Name="TextBlockProgress"  
+                RelativePanel.Below="TextBlockStatus"
+                HorizontalAlignment="Left"
+                Margin="5,5,5,5"
+                TextWrapping="Wrap" 
+                VerticalAlignment="Top"
+                FontSize="15"/>
+            
+            <TextBlock 
+                x:Name="TextBlockStatus" 
+                RelativePanel.Below="DLGrid"
+                HorizontalAlignment="Left"
+                Margin="5,5,5,5"
+                TextWrapping="Wrap" 
+                VerticalAlignment="Top"
+                FontSize="15"/>
         </RelativePanel>
 
-        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Visible">
-            <TextBox x:Name="InfoBox" Grid.Row="2" TextWrapping="Wrap" HorizontalAlignment="Stretch" ScrollViewer.IsVerticalRailEnabled="True" ScrollViewer.VerticalScrollMode="Enabled" ScrollViewer.HorizontalScrollMode="Enabled" VerticalAlignment="Stretch" RequestedTheme="Dark" Margin="5,5,5,5" Background="{x:Null}" BorderBrush="{x:Null}" IsReadOnly="True" IsHitTestVisible="False" IsTextPredictionEnabled="False"  />
+        <ScrollViewer
+            Grid.Row="2"
+            VerticalScrollBarVisibility="Visible">
+            
+            <TextBox 
+                x:Name="InfoBox"
+                Grid.Row="2" 
+                TextWrapping="Wrap" 
+                HorizontalAlignment="Stretch" 
+                ScrollViewer.IsVerticalRailEnabled="True" 
+                ScrollViewer.VerticalScrollMode="Enabled"
+                ScrollViewer.HorizontalScrollMode="Enabled"
+                VerticalAlignment="Stretch" 
+                RequestedTheme="Dark"
+                Margin="5,5,5,5"
+                Background="{x:Null}"
+                BorderBrush="{x:Null}"
+                IsReadOnly="True"
+                IsHitTestVisible="False" 
+                IsTextPredictionEnabled="False"  />
         </ScrollViewer>
     </Grid>
     

@@ -12,40 +12,189 @@
 
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/Assets/backdrop.jpg" Stretch="UniformToFill"/>
+            <ImageBrush 
+                ImageSource="/Assets/backdrop.jpg" 
+                Stretch="UniformToFill"/>
         </Grid.Background>
-        <Pivot Title="">
-            <PivotItem Header="Home">
+        
+        <Pivot 
+            Title="">
+            <PivotItem 
+                Header="Home">
                 <StackPanel>
                     <ScrollViewer>
-                        <TextBox x:Name="SoReIntro" ScrollViewer.VerticalScrollMode="Enabled" Margin="0,2,-2,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="Auto" TextAlignment="Left" BorderBrush="{x:Null}" Height="270" IsHitTestVisible="False" IsReadOnly="True" Background="{x:Null}"/>
+                        <TextBox
+                            x:Name="SoReIntro" 
+                            ScrollViewer.VerticalScrollMode="Enabled" 
+                            Margin="0,2,-2,0" 
+                            Text="" 
+                            TextWrapping="Wrap" 
+                            VerticalAlignment="Top"
+                            Width="Auto" 
+                            TextAlignment="Left" 
+                            BorderBrush="{x:Null}"
+                            Height="270"
+                            IsHitTestVisible="False" 
+                            IsReadOnly="True" 
+                            Background="{x:Null}"/>
                     </ScrollViewer>
                 </StackPanel>
             </PivotItem>
-            <PivotItem Header="Search FFUs">
+            <PivotItem 
+                Header="Search FFUs">
                 
-                <Grid Width="Auto">
-                    <TextBlock x:Name="SearchHeader" TextWrapping="Wrap" VerticalAlignment="Top" Height="Auto" Width="Auto" Text="Fill in the Info below:" TextAlignment="Center"/>
-                    <Grid Height="413" VerticalAlignment="Top" Width="Auto" Margin="8,50,7,0">
+                <Grid 
+                    Width="Auto">
+                    <TextBlock
+                        x:Name="SearchHeader"
+                        TextWrapping="Wrap"
+                        VerticalAlignment="Top" 
+                        Height="Auto" 
+                        Width="Auto"
+                        Text="Fill in the Info below:" 
+                        TextAlignment="Center"/>
+                    
+                    <Grid 
+                        Height="413" 
+                        VerticalAlignment="Top" 
+                        Width="Auto"
+                        Margin="8,50,7,0">
+                        
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="0*"/>
+                            <RowDefinition
+                                Height="Auto"/>
+                            <RowDefinition 
+                                Height="0*"/>
                         </Grid.RowDefinitions>
+                        
                         <RelativePanel>
-                        <TextBox x:Name="ProdCodeHead" Text="Product Code:" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Width="Auto" TextWrapping="Wrap" BorderBrush="{x:Null}" IsReadOnly="True" Margin="5,5,5,5" IsHitTestVisible="False" Background="{x:Null}"/>
-                        <TextBox x:Name="ProdTypeHead" Margin="5,5,5,5" RelativePanel.Below="ProdCodeHead"  Text="Product Type:" Width="Auto"  TextWrapping="Wrap" BorderBrush="{x:Null}" IsReadOnly="True" IsHitTestVisible="False" Background="{x:Null}"/>
-                        <TextBox x:Name="OpCodeHead" RelativePanel.Below="ProdTypeHead" Text="Operator Code:" TextWrapping="Wrap" Width="Auto"  BorderBrush="{x:Null}" IsReadOnly="True" Margin="5,5,5,5" IsHitTestVisible="False" Background="{x:Null}"/>
-                        <TextBox x:Name="ProdCodeInput" RelativePanel.AlignRightWithPanel="True" Margin="5,5,5,5" Text="" TextWrapping="Wrap" BorderBrush="Gray" PlaceholderText="059X4D5" IsTextPredictionEnabled="False" Width="146"/>
-                            <TextBox x:Name="ProdTypeInfo" Margin="5,5,5,5" RelativePanel.Below="ProdCodeInput" RelativePanel.AlignRightWithPanel="True" Text="" TextWrapping="Wrap" BorderBrush="Gray" PlaceholderText="RM-1104" Width="146"/>
-                            <TextBox x:Name="OperatorInfo" Margin="5,5,5,5" RelativePanel.Below="ProdTypeInfo" RelativePanel.AlignRightWithPanel="True" Text="" TextWrapping="Wrap" BorderBrush="Gray" PlaceholderText="ATT-US" Width="146"/>
-                            <Button x:Name="SearchBtn" RelativePanel.RightOf="DLButton" RelativePanel.AlignBottomWithPanel="True" RelativePanel.Below="OperatorInfo" Margin="5,5,5,5" Width="77" VerticalAlignment="Top" Content="Search" Click="SearchClickBtn" RenderTransformOrigin="0.523,0.481" Height="33" />
-                            <Button Content="Download"  x:Name="DLButton" RelativePanel.Below="OperatorInfo"  Width="90" Margin="5,5,5,5" VerticalAlignment="Top" Click="DLButton_Click" Height="32"/>
-                        <ProgressRing x:Name="ProgRing"  IsActive="true" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Visibility="Visible" Width="74" Height="74" HorizontalAlignment="Center" Margin="5,5,5,5" VerticalAlignment="Bottom"></ProgressRing>
+                        <TextBox 
+                            x:Name="ProdCodeHead" 
+                            Text="Product Code:" 
+                            RelativePanel.AlignTopWithPanel="True"
+                            RelativePanel.AlignLeftWithPanel="True"
+                            Width="Auto"
+                            TextWrapping="Wrap"
+                            BorderBrush="{x:Null}" 
+                            IsReadOnly="True" 
+                            Margin="5,5,5,5"
+                            IsHitTestVisible="False" 
+                            Background="{x:Null}"/>
+                            
+                        <TextBox 
+                            x:Name="ProdTypeHead" 
+                            Margin="5,5,5,5" 
+                            RelativePanel.Below="ProdCodeHead" 
+                            Text="Product Type:" 
+                            Width="Auto" 
+                            TextWrapping="Wrap" 
+                            BorderBrush="{x:Null}"
+                            IsReadOnly="True"
+                            IsHitTestVisible="False"
+                            Background="{x:Null}"/>
+                            
+                        <TextBox 
+                            x:Name="OpCodeHead"
+                            RelativePanel.Below="ProdTypeHead"
+                            Text="Operator Code:" 
+                            TextWrapping="Wrap" 
+                            Width="Auto"  
+                            BorderBrush="{x:Null}"
+                            IsReadOnly="True"
+                            Margin="5,5,5,5" 
+                            IsHitTestVisible="False" 
+                            Background="{x:Null}"/>
+                            
+                        <TextBox 
+                            x:Name="ProdCodeInput" 
+                            RelativePanel.AlignRightWithPanel="True"
+                            Margin="5,5,5,5" 
+                            Text=""
+                            TextWrapping="Wrap" 
+                            BorderBrush="Gray"
+                            PlaceholderText="059X4D5" 
+                            IsTextPredictionEnabled="False" 
+                            Width="146"/>
+                            
+                            <TextBox 
+                                x:Name="ProdTypeInfo" 
+                                Margin="5,5,5,5"
+                                RelativePanel.Below="ProdCodeInput" 
+                                RelativePanel.AlignRightWithPanel="True"
+                                Text="" 
+                                TextWrapping="Wrap"
+                                BorderBrush="Gray"
+                                PlaceholderText="RM-1104"
+                                Width="146"/>
+                            
+                            <TextBox 
+                                x:Name="OperatorInfo" 
+                                Margin="5,5,5,5" 
+                                RelativePanel.Below="ProdTypeInfo" 
+                                RelativePanel.AlignRightWithPanel="True" 
+                                Text="" 
+                                TextWrapping="Wrap"
+                                BorderBrush="Gray"
+                                PlaceholderText="ATT-US"
+                                Width="146"/>
+                            
+                            <Button 
+                                x:Name="SearchBtn"
+                                RelativePanel.RightOf="DLButton"
+                                RelativePanel.AlignBottomWithPanel="True" 
+                                RelativePanel.Below="OperatorInfo"
+                                Margin="5,5,5,5"
+                                Width="77" 
+                                VerticalAlignment="Top"
+                                Content="Search"
+                                Click="SearchClickBtn"
+                                RenderTransformOrigin="0.523,0.481"
+                                Height="33" />
+                            
+                            <Button
+                                Content="Download"  
+                                x:Name="DLButton"
+                                RelativePanel.Below="OperatorInfo" 
+                                Width="90" 
+                                Margin="5,5,5,5" 
+                                VerticalAlignment="Top" 
+                                Click="DLButton_Click"
+                                Height="32"/>
+                            
+                        <ProgressRing 
+                            x:Name="ProgRing" 
+                            IsActive="true"
+                            RelativePanel.AlignHorizontalCenterWithPanel="True"
+                            RelativePanel.AlignVerticalCenterWithPanel="True"
+                            Visibility="Visible"
+                            Width="74"
+                            Height="74"
+                            HorizontalAlignment="Center"
+                            Margin="5,5,5,5"
+                            VerticalAlignment="Bottom">
+                            
+                        </ProgressRing>
 
 
-                        <ScrollViewer Margin="5,5,5,5" RelativePanel.Below="DLButton" Height="Auto" MinHeight="200" MinWidth="200" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <ScrollViewer 
+                            Margin="5,5,5,5" 
+                            RelativePanel.Below="DLButton" 
+                            Height="Auto" 
+                            MinHeight="200"
+                            MinWidth="200"
+                            Grid.RowSpan="2"
+                            HorizontalAlignment="Stretch" 
+                            VerticalAlignment="Stretch">
 
-                            <TextBlock x:Name="SearchOutput" IsTextSelectionEnabled="True" ScrollViewer.VerticalScrollMode="Enabled" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" Height="Auto" Text="" />
+                            <TextBlock
+                                x:Name="SearchOutput"
+                                IsTextSelectionEnabled="True" 
+                                ScrollViewer.VerticalScrollMode="Enabled" 
+                                ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                                TextWrapping="Wrap" 
+                                Height="Auto" 
+                                Text="" />
 
                         </ScrollViewer>
                         </RelativePanel>
