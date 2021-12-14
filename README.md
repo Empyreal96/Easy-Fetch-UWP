@@ -51,5 +51,5 @@ A Simple utility to help users Manage their device with Device Portal, Download 
 - [UWP Packages Getter](https://github.com/colinkiama/UWPPackagesGetter) for Installed Packages listing
 - [StoreLib](https://github.com/StoreDev/StoreLib) for the original lib to connect to MS Servers
 - [libvideo](https://github.com/omansak/libvideo) for the basic YT download functionallity
-
+- [SharpCompressUWP](https://github.com/basharast/SharpCompressUWP) an excellent fork by @basharast to help extract and compress archives
   
