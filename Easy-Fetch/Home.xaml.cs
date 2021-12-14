@@ -39,9 +39,9 @@ namespace Phone_Helper
     /// </summary>
     public sealed partial class Home : Windows.UI.Xaml.Controls.Page
     {
-        public static string CurrentBuildVersion = "1.13.15-prerelease";
-        public static string PreviousBuildVersion = "1.13.14-prerelease";
-        public static string UploadedFileName = "Easy-Fetch_1.13.15.0_Debug_Test.zip";
+        public static string CurrentBuildVersion = "1.13.16-prerelease";
+        public static string PreviousBuildVersion = "1.13.15-prerelease";
+        public static string UploadedFileName = "Easy-Fetch_1.13.16.0_Debug_Test.zip";
         DownloadOperation downloadOperation;
         CancellationTokenSource cancellationToken;
 
