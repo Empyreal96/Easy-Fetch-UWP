@@ -10,7 +10,7 @@ A Simple utility to help users Manage their device with Device Portal, Download 
 - First Test of Github Update checker
 - General UI fixes
 
-  **[Find the latest release here]([Release Easy-Fetch Pre-release · Empyreal96/Easy-Fetch-UWP (github.com)](https://github.com/Empyreal96/Easy-Fetch-UWP/releases/tag/1.13.16-prerelease))**
+  **[Find the latest release here](https://github.com/Empyreal96/Easy-Fetch-UWP/releases/tag/1.13.16-prerelease)**
 
 ## What can it do?
 
