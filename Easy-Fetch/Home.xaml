@@ -73,27 +73,52 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center" 
                 BorderBrush="#FF333333"/>
-            
+            <Grid x:Name="DlGrid"
+                  RelativePanel.AlignBottomWithPanel="True"
+                  RelativePanel.AlignLeftWithPanel="True"
+                  RelativePanel.AlignRightWithPanel="True">
+                <Grid.RowDefinitions>
+                    <RowDefinition 
+                        Height="*"></RowDefinition>
+                    <RowDefinition 
+                        Height="*"></RowDefinition>
+                    <RowDefinition 
+                        Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                
+                
             <TextBlock 
                 x:Name="UpdateOut"
+                Grid.Row="0"
                 RelativePanel.Above="DLUpdate"
                 MinWidth="200" 
-                Height="200" 
+                Height="190" 
                 TextWrapping="Wrap"
                 ScrollViewer.VerticalScrollMode="Enabled" 
                 Margin="5,5,5,5" 
                 HorizontalAlignment="Stretch" 
                 RelativePanel.AlignLeftWithPanel="True"
                 RelativePanel.AlignRightWithPanel="True"/>
-            
+            <ProgressBar 
+                        x:Name="ProgressBarDownload" 
+                Grid.Row="1"
+                        RelativePanel.Below="UpdateOut" 
+                RelativePanel.Above="DLUpdate"
+                        RelativePanel.AlignLeftWithPanel="True"
+                        RelativePanel.AlignRightWithPanel="True"
+                        HorizontalAlignment="Stretch" 
+                        Height="10"
+                        Margin="5,5,5,5"
+                        VerticalAlignment="Top"/>
             <Button
                 x:Name="DLUpdate"
+                Grid.Row="2"
                 Click="DLUpdate_Click"
                 HorizontalAlignment="Stretch" 
                 RelativePanel.AlignBottomWithPanel="True"
                 Content="Download Update" 
                 Margin="5,5,5,5"/>
-            
+            </Grid>
         </RelativePanel>
     </Grid>
 

@@ -28,6 +28,7 @@ using static Phone_Helper.MainPage;
 using Windows.System;
 using Octokit;
 using System.Threading;
+using ExceptionHelper;
 
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -40,8 +41,10 @@ namespace Phone_Helper
     public sealed partial class Home : Windows.UI.Xaml.Controls.Page
     {
         public static string CurrentBuildVersion = "1.13.16-prerelease";
-        public static string PreviousBuildVersion = "1.13.15-prerelease";
-        public static string UploadedFileName = "Easy-Fetch_1.13.16.0_Debug_Test.zip";
+        public static string PreviousBuildVersion = "1.13.14-prerelease";
+        public static string UploadedFileName = "Easy-Fetch_1.13.17.0_Debug_Test.zip";
+        public StorageFolder folder { get; set; }
+        public static string UpdateURL { get; set; }
         DownloadOperation downloadOperation;
         CancellationTokenSource cancellationToken;
 
@@ -103,16 +106,20 @@ namespace Phone_Helper
                 else
                 {
                     var updateURL = latestRelease.Assets[0].BrowserDownloadUrl;
-                    string UpdateURL = $"https://github.com/Empyreal96/Easy-Fetch-UWP/releases/download/{latestRelease.TagName}/{UploadedFileName}";
+                    UpdateURL = $"https://github.com/Empyreal96/Easy-Fetch-UWP/releases/download/{latestRelease.TagName}/{UploadedFileName}";
+                   // string updateURL = $"https://github.com/Empyreal96/Easy-Fetch-UWP/releases/download/1.13.16-prerelease/Easy-Fetch_1.13.16.0_Debug_Test.zip";
                     UpdateOut.Text = $"Latest Build: {latestRelease.TagName}\n";
                     UpdateOut.Text += $"Current Build: {CurrentBuildVersion}\n";
-                    UpdateOut.Text += $"An Update is available!\n";
+                    UpdateOut.Text += $"{UpdateURL}\n";
+                    try
+                    {
+
                     
                     FolderPicker folderPicker = new FolderPicker();
                     folderPicker.SuggestedStartLocation = PickerLocationId.Downloads;
                     folderPicker.ViewMode = PickerViewMode.Thumbnail;
                     folderPicker.FileTypeFilter.Add("*");
-                    StorageFolder folder = await folderPicker.PickSingleFolderAsync();
+                    folder = await folderPicker.PickSingleFolderAsync();
                     if (folder == null)
                     {
                         return;
@@ -120,14 +127,63 @@ namespace Phone_Helper
                     StorageFile file = await folder.CreateFileAsync($"{UploadedFileName}", CreationCollisionOption.GenerateUniqueName);
 
                     downloadOperation = backgroundDownloader.CreateDownload(new Uri(UpdateURL), file);
-                    //Progress<DownloadOperation> progress = new Progress<DownloadOperation>(progressChanged);
+                    
+                    Progress<DownloadOperation> progress = new Progress<DownloadOperation>(progressChanged);
                     cancellationToken = new CancellationTokenSource();
-                    var UpdateAvailable = new MessageDialog("Update downloaded");
-                    UpdateAvailable.Commands.Add(new UICommand("Close"));
-                    await UpdateAvailable.ShowAsync();
+                        await downloadOperation.StartAsync().AsTask(cancellationToken.Token, progress);
+
+                    } catch (Exception ex)
+                    {
+                        Exceptions.ThrownExceptionError(ex);
+                    }
                 }
                // DLUpdate.IsEnabled = true;
             } 
+        }
+        private void progressChanged(DownloadOperation downloadOperation)
+        {
+            int progress = (int)(100 * ((double)downloadOperation.Progress.BytesReceived / (double)downloadOperation.Progress.TotalBytesToReceive));
+            //TextBlockProgress.Text = String.Format("{0} of {1} kb. downloaded - {2}% complete.", downloadOperation.Progress.BytesReceived / 1024, downloadOperation.Progress.TotalBytesToReceive / 1024, progress);
+            ProgressBarDownload.Value = progress;
+            switch (downloadOperation.Progress.Status)
+            {
+                case BackgroundTransferStatus.Running:
+                    {
+                        UpdateOut.Text = $"Downloading from {UpdateURL}";
+                        //ButtonPauseResume.Content = "Pause";
+                        break;
+                    }
+                case BackgroundTransferStatus.PausedByApplication:
+                    {
+                        UpdateOut.Text = "Download paused.";
+                        //ButtonPauseResume.Content = "Resume";
+                        break;
+                    }
+                case BackgroundTransferStatus.PausedCostedNetwork:
+                    {
+                        UpdateOut.Text = "Download paused because of metered connection.";
+                        //ButtonPauseResume.Content = "Resume";
+                        break;
+                    }
+                case BackgroundTransferStatus.PausedNoNetwork:
+                    {
+                        UpdateOut.Text = "No network detected. Please check your internet connection.";
+                        break;
+                    }
+                case BackgroundTransferStatus.Error:
+                    {
+                        UpdateOut.Text = "An error occured while downloading.";
+                        break;
+                    }
+            }
+            if (progress >= 100)
+            {
+                UpdateOut.Text = $"Download complete. Update downloaded to {folder.Path}\\{UploadedFileName}";
+               // ButtonCancel.IsEnabled = false;
+                //ButtonPauseResume.IsEnabled = false;
+                //ButtonDownload.IsEnabled = true;
+                downloadOperation = null;
+            }
         }
     }
     
