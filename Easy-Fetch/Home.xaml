@@ -92,7 +92,7 @@
                 Grid.Row="0"
                 RelativePanel.Above="DLUpdate"
                 MinWidth="200" 
-                Height="190" 
+                Height="auto" 
                 TextWrapping="Wrap"
                 ScrollViewer.VerticalScrollMode="Enabled" 
                 Margin="5,5,5,5" 
@@ -117,6 +117,15 @@
                 HorizontalAlignment="Stretch" 
                 RelativePanel.AlignBottomWithPanel="True"
                 Content="Download Update" 
+                Margin="5,5,5,5"/>
+                
+                <Button
+                x:Name="InstallUpdateBtn"
+                Grid.Row="2"
+                Click="InstallUpdateBtn_Click"
+                HorizontalAlignment="Stretch" 
+                RelativePanel.AlignBottomWithPanel="True"
+                Content="Install Update" 
                 Margin="5,5,5,5"/>
             </Grid>
         </RelativePanel>

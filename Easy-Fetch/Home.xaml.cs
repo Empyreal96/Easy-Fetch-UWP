@@ -29,6 +29,10 @@ using Windows.System;
 using Octokit;
 using System.Threading;
 using ExceptionHelper;
+using System.Net.NetworkInformation;
+using SharpCompress.Archives;
+using SharpCompress.Common;
+using SharpCompress.Readers;
 
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -40,10 +44,25 @@ namespace Phone_Helper
     /// </summary>
     public sealed partial class Home : Windows.UI.Xaml.Controls.Page
     {
+        /// <summary>
+        /// MUST CHANGE THESE BEFORE EACH PUBLIC GITHUB RELEASE
+        /// 
+        /// MUST CHANGE THESE BEFORE EACH PUBLIC GITHUB RELEASE
+        /// 
+        /// MUST CHANGE THESE BEFORE EACH PUBLIC GITHUB RELEASE
+        /// </summary>
         public static string CurrentBuildVersion = "1.13.16-prerelease";
-        public static string PreviousBuildVersion = "1.13.14-prerelease";
+        public static string PreviousBuildVersion = "1.13.15-prerelease";
+        public static string NextBuildVersion = "1.13.17-prerelease";
         public static string UploadedFileName = "Easy-Fetch_1.13.17.0_Debug_Test.zip";
+        public static string AppxUpdateName = "Easy-Fetch_1.13.17.0_x86_x64_arm_Debug.appxbundle";
+        /// <summary>
+        /// 
+        /// </summary>
+        
         public StorageFolder folder { get; set; }
+        public StorageFile file { get; set; }
+        public bool isLatestBuild { get; set; }
         public static string UpdateURL { get; set; }
         DownloadOperation downloadOperation;
         CancellationTokenSource cancellationToken;
@@ -54,8 +73,7 @@ namespace Phone_Helper
             this.InitializeComponent();
             DLUpdate.IsEnabled = true;
             DLUpdate.Visibility = Visibility.Visible;
-            //CheckForUpdate();
-
+            InstallUpdateBtn.Visibility = Visibility.Collapsed;
             HomePage.Text = $"[Version: {CurrentBuildVersion}]\n"; 
             HomePage.Text += "This is in ongoing development, suggestions and feedback are welcome. Features and UI not final" + "\n\n";
             HomePage.Text += "A simple tool to help users:" + "\n"
@@ -65,29 +83,28 @@ namespace Phone_Helper
                            + "• Search and Download Appx files from MS Store" + "\n"
                            + "• Download Files and Youtube Videos" + "\n"
                            + "• Extract Archives easily";
-
+            ///
+            /// Network Check and Check for Updates
+            bool isNetworkConnected = NetworkInterface.GetIsNetworkAvailable();
+            if (isNetworkConnected == true)
+            {
+                CheckForUpdate();
+                
+            }
+            else
+            {
+                UpdateOut.Visibility = Visibility.Collapsed;
+                ProgressBarDownload.Visibility = Visibility.Collapsed;
+                DLUpdate.Visibility = Visibility.Collapsed;
+            }
+            
         }
-
+        /// <summary>
+        /// Check Github for latest Release tag, and download if available
+        /// </summary>
         private async void CheckForUpdate()
         {
-            GitHubClient client = new GitHubClient(new ProductHeaderValue("Easy-Fetch-UWP"));
-            IReadOnlyList<Release> releases = await client.Repository.Release.GetAll("Empyreal96", "Easy-Fetch-UWP");
-            var latestRelease = releases[0];
-            if (latestRelease.Assets != null && latestRelease.Assets.Count > 0)
-            {
-
-
-                var UpdateAvailable = new MessageDialog("An update is available");
-                UpdateAvailable.Commands.Add(new UICommand("Close"));
-                await UpdateAvailable.ShowAsync();
-                DLUpdate.IsEnabled = true;
-            }
-        }
-
-       
-
-        private async void DLUpdate_Click(object sender, RoutedEventArgs e)
-        {
+            await Windows.Storage.ApplicationData.Current.ClearAsync(ApplicationDataLocality.LocalCache);
             GitHubClient client = new GitHubClient(new ProductHeaderValue("Easy-Fetch-UWP"));
             IReadOnlyList<Release> releases = await client.Repository.Release.GetAll("Empyreal96", "Easy-Fetch-UWP");
             var latestRelease = releases[0];
@@ -95,51 +112,112 @@ namespace Phone_Helper
             {
                 if (latestRelease.TagName == CurrentBuildVersion)
                 {
-                    UpdateOut.Text = "No Updates Found! Check back later.";
+                    isLatestBuild = true;
+                    UpdateOut.Visibility = Visibility.Collapsed;
+                    ProgressBarDownload.Visibility = Visibility.Collapsed;
+                    DLUpdate.Visibility = Visibility.Collapsed;
                 }
                 //Test Function
-               // if(latestRelease.TagName == PreviousBuildVersion)
-               // {
-               //     UpdateOut.Text = "You are on an unreleased build";
-               // }
+                // if(latestRelease.TagName == PreviousBuildVersion)
+                // {
+                //     UpdateOut.Text = "You are on an unreleased build";
+                // }
 
                 else
                 {
                     var updateURL = latestRelease.Assets[0].BrowserDownloadUrl;
                     UpdateURL = $"https://github.com/Empyreal96/Easy-Fetch-UWP/releases/download/{latestRelease.TagName}/{UploadedFileName}";
-                   // string updateURL = $"https://github.com/Empyreal96/Easy-Fetch-UWP/releases/download/1.13.16-prerelease/Easy-Fetch_1.13.16.0_Debug_Test.zip";
+                    // string updateURL = $"https://github.com/Empyreal96/Easy-Fetch-UWP/releases/download/1.13.16-prerelease/Easy-Fetch_1.13.16.0_Debug_Test.zip";
                     UpdateOut.Text = $"Latest Build: {latestRelease.TagName}\n";
                     UpdateOut.Text += $"Current Build: {CurrentBuildVersion}\n";
+                    UpdateOut.Text += $"Date Update Published: {latestRelease.PublishedAt}\n\n";
                     UpdateOut.Text += $"{UpdateURL}\n";
-                    try
-                    {
+                }
+            }
+        }
+       
+        /// <summary>
+        /// Download the Update Package
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void DLUpdate_Click(object sender, RoutedEventArgs e)
+        {
 
-                    
-                    FolderPicker folderPicker = new FolderPicker();
-                    folderPicker.SuggestedStartLocation = PickerLocationId.Downloads;
-                    folderPicker.ViewMode = PickerViewMode.Thumbnail;
-                    folderPicker.FileTypeFilter.Add("*");
-                    folder = await folderPicker.PickSingleFolderAsync();
-                    if (folder == null)
-                    {
-                        return;
-                    }
-                    StorageFile file = await folder.CreateFileAsync($"{UploadedFileName}", CreationCollisionOption.GenerateUniqueName);
+            try
+            {
 
-                    downloadOperation = backgroundDownloader.CreateDownload(new Uri(UpdateURL), file);
-                    
-                    Progress<DownloadOperation> progress = new Progress<DownloadOperation>(progressChanged);
-                    cancellationToken = new CancellationTokenSource();
-                        await downloadOperation.StartAsync().AsTask(cancellationToken.Token, progress);
 
-                    } catch (Exception ex)
+                FolderPicker folderPicker = new FolderPicker();
+                folderPicker.SuggestedStartLocation = PickerLocationId.Downloads;
+                folderPicker.ViewMode = PickerViewMode.Thumbnail;
+                folderPicker.FileTypeFilter.Add("*");
+                folder = await folderPicker.PickSingleFolderAsync();
+                if (folder == null)
+                {
+                    return;
+                }
+                file = await folder.CreateFileAsync($"{UploadedFileName}", CreationCollisionOption.GenerateUniqueName);
+
+                downloadOperation = backgroundDownloader.CreateDownload(new Uri(UpdateURL), file);
+
+                Progress<DownloadOperation> progress = new Progress<DownloadOperation>(progressChanged);
+                cancellationToken = new CancellationTokenSource();
+                await downloadOperation.StartAsync().AsTask(cancellationToken.Token, progress);
+                InstallUpdateBtn.Visibility = Visibility.Visible;
+                DLUpdate.Visibility = Visibility.Collapsed;
+
+            }
+            catch (Exception ex)
+            {
+                Exceptions.ThrownExceptionError(ex);
+            }
+
+
+        }
+
+        private void InstallUpdateBtn_Click(object sender, RoutedEventArgs e)
+        {
+           
+            
+            InstallUpdate();
+        }
+
+        private async void InstallUpdate()
+        {
+            UpdateOut.Text = "Extracting Update to App Cache";
+            try
+            {
+                Stream zipStream = await file.OpenStreamForReadAsync();
+                using (var zipArchive = ArchiveFactory.Open(zipStream))
+                {
+                    //It should support 7z, zip, rar, gz, tar
+                    var reader = zipArchive.ExtractAllEntries();
+
+                    while (reader.MoveToNextEntry())
                     {
-                        Exceptions.ThrownExceptionError(ex);
+                        if (!reader.Entry.IsDirectory)
+                        {
+                            await reader.WriteEntryToDirectory(Windows.Storage.ApplicationData.Current.LocalCacheFolder, new ExtractionOptions() { ExtractFullPath = true, Overwrite = true });
+                        }
                     }
                 }
-               // DLUpdate.IsEnabled = true;
-            } 
+                var options = new Windows.System.LauncherOptions();
+                options.PreferredApplicationPackageFamilyName = "Microsoft.DesktopAppInstaller_8wekyb3d8bbwe";
+                options.PreferredApplicationDisplayName = "App Installer";
+                UpdateOut.Text = "Attempting to Install Update Package, Please Wait";
+                await Windows.System.Launcher.LaunchFileAsync(await Windows.Storage.ApplicationData.Current.LocalCacheFolder.GetFileAsync(AppxUpdateName), options);
+                
+            } catch (Exception ex)
+            {
+                UpdateOut.Text = $"An error occured while trying to install: \n{ex.Message}";
+            }
         }
+
+        /// <summary>
+        /// Progress for Download
+        /// </summary>
+        /// <param name="downloadOperation"></param>
         private void progressChanged(DownloadOperation downloadOperation)
         {
             int progress = (int)(100 * ((double)downloadOperation.Progress.BytesReceived / (double)downloadOperation.Progress.TotalBytesToReceive));
