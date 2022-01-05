@@ -11,11 +11,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <Grid.Background>
-            <ImageBrush 
-                ImageSource="/Assets/backdrop.jpg" 
-                Stretch="UniformToFill"/>
-        </Grid.Background>
+        
         
         <Pivot 
             Title="        Simple Archiver" 

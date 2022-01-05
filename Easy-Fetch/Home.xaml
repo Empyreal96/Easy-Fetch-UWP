@@ -12,11 +12,7 @@
 
 
     <Grid Margin="0,0,0,0">
-        <Grid.Background>
-            <ImageBrush 
-                ImageSource="/Assets/backdrop.jpg" 
-                Stretch="UniformToFill"/>
-        </Grid.Background>
+        
         <RelativePanel>
             <TextBox
                 x:Name="PHHeader"
@@ -76,7 +72,8 @@
             <Grid x:Name="DlGrid"
                   RelativePanel.AlignBottomWithPanel="True"
                   RelativePanel.AlignLeftWithPanel="True"
-                  RelativePanel.AlignRightWithPanel="True">
+                  RelativePanel.AlignRightWithPanel="True"
+                  Margin="5,5,5,5">
                 <Grid.RowDefinitions>
                     <RowDefinition 
                         Height="*"></RowDefinition>

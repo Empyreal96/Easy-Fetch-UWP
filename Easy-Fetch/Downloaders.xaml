@@ -11,11 +11,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <Grid.Background>
-            <ImageBrush 
-                ImageSource="/Assets/backdrop.jpg"
-                Stretch="UniformToFill"/>
-        </Grid.Background>
+        
         
         <Pivot 
             Title="          Downloaders" >
@@ -74,7 +70,21 @@
                         Padding="0,0,0,0"
                         Height="32"
                         Width="125" />
-                    
+                    <ComboBox 
+                        x:Name="HDComboBox"
+                        SelectionChanged="HDComboBox_SelectionChanged"
+                        RelativePanel.AlignRightWithPanel="True"
+                        RelativePanel.Below="YTGrid"
+                        Margin="5,5,5,5"
+                        PlaceholderText="Quality"/>
+                    <ProgressBar x:Name="progressYT"
+                                 RelativePanel.Below="YTDownloadBtn"
+                                 Margin="5,5,5,5"
+                                 RelativePanel.AlignLeftWithPanel="True"
+                                 RelativePanel.AlignRightWithPanel="True" 
+                                 Height="8"
+                                 IsIndeterminate="True"
+                                 Visibility="Collapsed"/>
                     <Button 
                         x:Name="YTDownloadMP3Btn" 
                         Click="YTDownloadMP3Btn_Click"
@@ -85,34 +95,34 @@
                         Padding="0,0,0,0"
                         Height="32"
                         Width="120" />
-
-                    <TextBox 
+                    <TextBlock
                         x:Name="ProgressText" 
                         Width="auto"
                         HorizontalAlignment="Stretch" 
-                        RelativePanel.RightOf="YTDownloadMP3Btn"
-                        RelativePanel.Below="YTGrid"
+                        RelativePanel.AlignLeftWithPanel="True"
+                        RelativePanel.AlignRightWithPanel="false"
+                        RelativePanel.Below="progressYT"
                         Margin="5,5,5,5" 
-                        BorderBrush="{x:Null}" 
-                        Background="{x:Null}"/>
+                        />
                     
-                    <ProgressRing 
-                        x:Name="ProgRing"
-                        Width="74" 
-                        Height="74" 
-                        RelativePanel.AlignHorizontalCenterWithPanel="True"
-                        RelativePanel.AlignVerticalCenterWithPanel="True"/>
+                  
 
                     <Border 
                         x:Name="YTThumbnailBorder" 
-                        RelativePanel.Below="YTDownloadBtn"
+                        RelativePanel.Below="ProgressText"
+                        RelativePanel.AlignLeftWithPanel="True"
+                        RelativePanel.AlignRightWithPanel="False"
                         HorizontalAlignment="Stretch" 
                         VerticalAlignment="Stretch"
+                        MaxWidth="400"
                         Margin="5,5,5,5">
-                        
+
                         <Image 
                             x:Name="YTThumbnail"
-                            RelativePanel.Below="YTSearchBtn"
+                            
+                            RelativePanel.AlignLeftWithPanel="True"
+                        RelativePanel.AlignRightWithPanel="false"
+                            MaxWidth="400"
                             HorizontalAlignment="Stretch"
                             Height="auto"
                             Margin="5,5,5,5" />
@@ -120,7 +130,9 @@
                     </Border>
                     <ScrollViewer
                         x:Name="YTInfoScroll"
-                        RelativePanel.Below="YTThumbnailBorder" 
+                        RelativePanel.Below="YTThumbnailBorder"
+                        RelativePanel.AlignLeftWithPanel="True"
+                        RelativePanel.AlignRightWithPanel="True"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch">
                         
@@ -130,6 +142,8 @@
                             ScrollViewer.VerticalScrollMode="Enabled" 
                             MinWidth="250"
                             RelativePanel.Below="YTThumbnailBorder"
+                            RelativePanel.AlignLeftWithPanel="True"
+                        RelativePanel.AlignRightWithPanel="True"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch"  
                             Margin="5,5,5,5">
@@ -139,6 +153,8 @@
                                 ScrollViewer.VerticalScrollMode="Enabled" 
                                 TextWrapping="Wrap"
                                 RelativePanel.Below="YTThumbnail"
+                                RelativePanel.AlignLeftWithPanel="True"
+                        RelativePanel.AlignRightWithPanel="True"
                                 HorizontalAlignment="Stretch" 
                                 VerticalAlignment="Stretch"
                                 Margin="5,5,5,5"

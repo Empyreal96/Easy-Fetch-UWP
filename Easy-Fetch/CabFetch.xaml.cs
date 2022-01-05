@@ -51,6 +51,7 @@ namespace Phone_Helper
             
             this.InitializeComponent();
             userChoice = "No";
+            build = null;
            // ButtonCancel.Visibility = Visibility.Collapsed;
             InfoBox.Text = "Select your desired build, Progress wll be shown here.\n" +
                 "All archives for the selected build will be fetched, This will take time.\n\n" +
@@ -62,19 +63,24 @@ namespace Phone_Helper
                 "10.0.15063.297\n" +
                 "10.0.15254.603\n" +
                 "10.0.16212.1000 (rs_xbox)\n";
-            cabComboBox.Items.Add("10.0.10549.4");
-            cabComboBox.Items.Add("10.0.10570.0");
-            cabComboBox.Items.Add("10.0.10586.107");
-            cabComboBox.Items.Add("10.0.14393.1066");
-            cabComboBox.Items.Add("10.0.15063.297");
-            cabComboBox.Items.Add("10.0.15254.603");
-            cabComboBox.Items.Add("10.0.16212.1000");
+            cabComboBox.Items.Add("10.0.10549.4"); // 1
+            cabComboBox.Items.Add("10.0.10570.0"); // 2
+            cabComboBox.Items.Add("10.0.10586.107"); // 3
+            cabComboBox.Items.Add("10.0.14393.1066"); // 4
+            cabComboBox.Items.Add("10.0.15063.297"); // 5
+            cabComboBox.Items.Add("10.0.15254.603"); // 6
+            cabComboBox.Items.Add("10.0.16212.1000"); // 7
         }
 
         private async void CabDLBtn_Click(object sender, RoutedEventArgs e)
         {
 
-           
+            
+            if (build == null)
+            {
+                InfoBox.Text = "Please Select a Build!";
+                return;
+            }
             ButtonPauseResume.Visibility = Visibility.Visible;
             ProgressBarDownload.Visibility = Visibility.Visible;
             FolderPicker folderPicker = new FolderPicker();
@@ -87,10 +93,7 @@ namespace Phone_Helper
                 InfoBox.Text = "Please Choose a Folder";
             }
 
-            if (cabComboBox.SelectedItem == "")
-            {
-                InfoBox.Text = "Please Select a Build!";
-            }
+           
 
             if (userChoice == "Yes")
             {
@@ -111,7 +114,7 @@ namespace Phone_Helper
                 DownloadCompleted();
             }
 
-            if (cabComboBox.SelectedItem == "10.0.10549.4")
+            if (build == "10.0.10549.4")
             {
                 BuildLinks.firstBuildList();
                 InfoBox.Text = $"{firstList.Count().ToString()} Files to Download:\n";
@@ -133,7 +136,7 @@ namespace Phone_Helper
 
 
 
-            if (cabComboBox.SelectedItem == "10.0.10570.0")
+            if (build == "10.0.10570.0")
             {
                 BuildLinks.secondBuildList();
                 InfoBox.Text = $"{secondList.Count().ToString()} Files to Download:\n";
@@ -153,7 +156,7 @@ namespace Phone_Helper
             }
 
 
-            if (cabComboBox.SelectedItem == "10.0.10586.107")
+            if (build == "10.0.10586.107")
             {
                 BuildLinks.thirdBuildList();
                 InfoBox.Text = $"{thirdList.Count().ToString()} Files to Download:\n";
@@ -172,7 +175,7 @@ namespace Phone_Helper
                 DownloadCompleted();
             }
 
-            if (cabComboBox.SelectedItem == "10.0.14393.1066")
+            if (cabComboBox.SelectedValue == "10.0.14393.1066")
             {
                 BuildLinks.fourthBuildList();
                 InfoBox.Text = $"{fourthList.Count().ToString()} Files to Download:\n";
@@ -191,7 +194,7 @@ namespace Phone_Helper
                 DownloadCompleted();
             }
             
-            if (cabComboBox.SelectedItem == "10.0.15063.297")
+            if (build == "10.0.15063.297")
             {
                 BuildLinks.fifthBuildList();
                 InfoBox.Text = $"{fifthList.Count().ToString()} Files to Download:\n";
@@ -210,7 +213,7 @@ namespace Phone_Helper
                 DownloadCompleted();
             }
             
-            if (cabComboBox.SelectedItem == "10.0.15254.603")
+            if (build == "10.0.15254.603")
             {
                 BuildLinks.sixthBuildList();
                 InfoBox.Text = $"{sixthList.Count().ToString()} Files to Download:\n";
@@ -229,7 +232,7 @@ namespace Phone_Helper
                 DownloadCompleted();
             }
             
-            if (cabComboBox.SelectedItem == "10.0.16212.1000")
+            if (build == "10.0.16212.1000")
             {
 
                 BuildLinks.seventhBuildList();
@@ -258,6 +261,7 @@ namespace Phone_Helper
             DownloadComplete.Commands.Add(new UICommand("Close"));
             await DownloadComplete.ShowAsync();
             currentFetchedCount = 0;
+            build = null;
         }
     
         private async void LoadList_Click(object sender, RoutedEventArgs e)
@@ -316,11 +320,11 @@ namespace Phone_Helper
 
                     if(Path.GetFileName(list).Contains("?dl=1") == true)
                     {
-                        InfoBox.Text += $"File: {Path.GetFileName(list).Replace(".cab?dl=1", ".cab")} Downloaded!\n\n";
+                        InfoBox.Text = $"File: {Path.GetFileName(list).Replace(".cab?dl=1", ".cab")}\n\n";
                     }
                     else
                     {
-                        InfoBox.Text += $"File: {Path.GetFileName(list)} Downloaded!\n\n";
+                        InfoBox.Text = $"File: {Path.GetFileName(list)}\n\n";
                     }
 
                     currentFetchedCount = currentFetchedCount + 1;
@@ -4892,6 +4896,16 @@ namespace Phone_Helper
             cancellationToken.Cancel();
             cancellationToken.Dispose();
 
+        }
+
+        private void cabComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var combo = sender as ComboBox;
+            var selecteditem = combo.SelectedItem;
+            //TextBlockStatus.Text = selecteditem.ToString();
+            build = selecteditem.ToString();
+            //or, since ComboBox DOESN'T support multiple selection, you can get the item like:
+            var selecteditems = e.AddedItems.FirstOrDefault();
         }
     }
 }

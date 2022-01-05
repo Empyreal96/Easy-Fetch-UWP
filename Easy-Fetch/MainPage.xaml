@@ -45,7 +45,7 @@
                     Icon="Download" />
                 
                 <controls:NavigationViewItem 
-                    Content="W10M Update Fetcher" 
+                    Content="WP Update Fetcher" 
                     Tag="CabFetch" 
                     Icon="Download" />
                 

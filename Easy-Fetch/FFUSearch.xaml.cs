@@ -53,10 +53,15 @@ namespace Phone_Helper
             SoReIntro.Text += "\n\n" + "• Product Type is REQUIRED"
                             + "\n" + "• Product Code is required"
                             + "\n" + "• Download speeds may be slow-ish";
-            SoReIntro.Text += "\n" + "• Interop Unlock is needed for Auto-Filling the Product Code.";
+            
             SoReIntro.Text += "\n" + "• Emergency Files require Product Type only";
         
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public async void SearchClickBtn(object sender, RoutedEventArgs e)
         {
             string ProductType = ProdTypeInfo.Text;
@@ -117,7 +122,11 @@ namespace Phone_Helper
                 //SearchOutput.Text += ffu; 
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void DLButton_Click(object sender, RoutedEventArgs e)
         {
             string ProductType = ProdTypeInfo.Text;
@@ -218,6 +227,10 @@ namespace Phone_Helper
                 //}
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="downloadOperation"></param>
         private async void ProgressChanged(DownloadOperation downloadOperation)
         {
             var total = (long)downloadOperation.Progress.TotalBytesToReceive;
@@ -291,7 +304,12 @@ namespace Phone_Helper
         }
 
        
-        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="tag"></param>
+        /// <returns></returns>
             public static string extractData(string text, string tag)
             {
             var pattern = $"{tag}:(?<{tag}>.*)";
@@ -309,7 +327,11 @@ namespace Phone_Helper
        
 
 
-        // emergency files
+        /// <summary>
+        /// Emergency File search
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public async void Search2ClickBtn(object sender, RoutedEventArgs e)
         {
 
@@ -364,7 +386,11 @@ namespace Phone_Helper
                 //SearchOutput.Text += ffu; 
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void DLButton2_Click(object sender, RoutedEventArgs e)
         {
             SearchHeader2.Text = "Fill in the info below:";
@@ -460,7 +486,12 @@ namespace Phone_Helper
                 }
             }
         }
-       
+       /// <summary>
+       /// Notification system for download
+       /// </summary>
+       /// <param name="title"></param>
+       /// <param name="stringContent"></param>
+       /// <param name="expireTime"></param>
         public static void ShowNotification(string title, string stringContent, int expireTime = 15)
         {
             try

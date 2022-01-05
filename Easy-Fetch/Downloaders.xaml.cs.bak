@@ -28,9 +28,6 @@ using Windows.Media.Editing;
 using Windows.Media.MediaProperties;
 using Windows.Media.Transcoding;
 using Windows.UI.Core;
-using System.Text.RegularExpressions;
-using System.Net.NetworkInformation;
-using FFmpegInterop;
 
 
 
@@ -61,6 +58,7 @@ namespace Phone_Helper
         public string FPS { get; set; }
         public string VideoID { get; set; }
         public string ChosenQuality { get; set; }
+        public long LengthIn { get; set; }
         public int ChosenQualityInt { get; set; }
         public bool IsHDQuality { get; set; }
         public YouTubeVideo video { get; set; }
@@ -86,8 +84,8 @@ namespace Phone_Helper
             HDComboBox.Items.Add("360p"); // 2
             HDComboBox.Items.Add("480p"); // 3
             HDComboBox.Items.Add("720p"); // 4
-            HDComboBox.Items.Add("1080p"); // 5
-            HDComboBox.Items.Add("2160p"); // 6
+            //HDComboBox.Items.Add("1080p"); // 5
+            //HDComboBox.Items.Add("2160p"); // 6
             ChosenQuality = "";
             progressYT.Visibility = Visibility.Collapsed;
             progressYT.IsEnabled = false;
@@ -96,7 +94,7 @@ namespace Phone_Helper
                                 @"- Make sure URL starts with 'https:\\www.'" + "\n" +
                                 "- Progress on downloads will be improved in the future"; */
             progressYT.IsEnabled = false;
-
+            
             progressYT.Visibility = Visibility.Collapsed;
             YTDownloadBtn.Visibility = Visibility.Collapsed;
             YTSearchOutput.Visibility = Visibility.Collapsed;
@@ -128,13 +126,7 @@ namespace Phone_Helper
         /// <param name="e"></param>
         private async void YTSearchBtn_Click(object sender, RoutedEventArgs e)
         {
-            bool isNetworkConnected = NetworkInterface.GetIsNetworkAvailable();
-            if (isNetworkConnected == false)
-            {
-                ProgressText.Text = "Please connect to the Internet to use";
-                return;
 
-            }
             if (ChosenQuality == "")
             {
                 ProgressText.Text = "Please choose the quality";
@@ -151,7 +143,7 @@ namespace Phone_Helper
                     await ThrownException.ShowAsync();
                 }
                 progressYT.IsEnabled = true;
-
+                
                 progressYT.Visibility = Visibility.Visible;
                 link = DownloaderYTHeader.Text;
 
@@ -179,51 +171,28 @@ namespace Phone_Helper
                     //DownloadHDBitsTest();
                     var youTube = YouTube.Default; // starting point for YouTube actions
                     var Justvideo = youTube.GetVideo(link); // gets a Video object with info about the video
-                    //videoInfos = youTube.GetAllVideosAsync(link).GetAwaiter().GetResult();
-                    videoInfos = await youTube.GetAllVideosAsync(link);
+                    videoInfos = youTube.GetAllVideosAsync(link).GetAwaiter().GetResult();
                     //ProgressText.Text = "";
 
                     //var video = videoInfos.First(i => i.IsAdaptive); //videoInfos.First(i => i.Resolution == videoInfos.Max(j => j.Resolution));
-                    try
-                    {
-                        maxVideo = videoInfos.First(i => i.Resolution == ChosenQualityInt);
-                    }catch(Exception ex)
-                    {
-                        Exceptions.ThrownExceptionError(ex);
-                        progressYT.IsEnabled = false;
-                        progressYT.Visibility = Visibility.Collapsed;
-                        return;
-                    }
-
-                    //New Code Below
-                    maxBitrate = videoInfos.Where(v => v.AudioFormat == AudioFormat.Aac && v.AdaptiveKind == AdaptiveKind.Audio).FirstOrDefault();
-
-                    //maxBitrate = videoInfos.First(i => i.AudioBitrate == videoInfos.Max(j => j.AudioBitrate)); <-- Disabled Code
-
-                    // var mpAudio = videoInfos.First(i => i.AudioBitrate == videoInfos.Max(j => j.AudioBitrate)); //FirstOrDefault(x => x.AudioBitrate > 0);
+                    maxVideo = videoInfos.First(i => i.Resolution == ChosenQualityInt);
+                    maxBitrate = videoInfos.First(i => i.AudioBitrate == videoInfos.Max(j => j.AudioBitrate));
+                   // var mpAudio = videoInfos.First(i => i.AudioBitrate == videoInfos.Max(j => j.AudioBitrate)); //FirstOrDefault(x => x.AudioBitrate > 0);
 
                     string videoURIs = maxVideo.Uri;
                     string audioURIs = maxBitrate.Uri;
                     Title = maxVideo.Title;
                     Extension = maxVideo.FileExtension;
-
-                    var taskVideoSizeCompletionSource = new TaskCompletionSource<bool>();
-                    await Task.Run(async () =>
+                    try
                     {
-                        try
-                        {
-                            long LengthIn = (long)maxVideo.ContentLength;
-                            Length = LengthIn.ToFileSize();
-                            taskVideoSizeCompletionSource.SetResult(true);
-                        }
-                        catch (Exception ex)
-                        {
-                            taskVideoSizeCompletionSource.SetResult(true);
-                        }
-                    });
-                    await taskVideoSizeCompletionSource.Task;
-                    FileName = maxVideo.Title;
 
+                        LengthIn = (long)maxVideo.ContentLength;
+                    } catch (Exception ex)
+                    {
+                        Exceptions.ThrownExceptionError(ex);
+                    }
+                        FileName = maxVideo.Title;
+                    Length = LengthIn.ToFileSize();
                     AudioBitrate = maxBitrate.AudioBitrate.ToString();
                     AudioFormats = maxBitrate.AudioFormat.ToString();
                     VideoFormat = maxVideo.Format.ToString();
@@ -243,8 +212,8 @@ namespace Phone_Helper
                                             $"Video Format: {VideoFormat}\n" +
                                             $"Video Resolution: {VideoRes}\n" +
                                             $"Video FPS: {FPS}\n\n" +
-                                            $"Video URI: {maxVideo.Info.LengthSeconds}\n{maxVideo.IsAdaptive}\n"
-                                            ;
+                                            $"Video URI: {videoURIs}\n\n" +
+                                            $"Audio URI: {audioURIs}\n\n";
                     YTDownloadBtn.Visibility = Visibility.Visible;
 
 
@@ -252,7 +221,7 @@ namespace Phone_Helper
 
 
                     progressYT.IsEnabled = false;
-
+                    
                     progressYT.Visibility = Visibility.Collapsed;
                 }
                 else
@@ -273,21 +242,8 @@ namespace Phone_Helper
                     Title = video.Title;
                     Extension = video.FileExtension;
                     //TimeSpan durationinseconds = TimeSpan.FromMilliseconds(video.ContentLength);
-                    var taskVideoSizeCompletionSource = new TaskCompletionSource<bool>();
-                    await Task.Run(async () =>
-                    {
-                        try
-                        {
-                            long LengthIn = (long)video.ContentLength;
-                            Length = LengthIn.ToFileSize();
-                            taskVideoSizeCompletionSource.SetResult(true);
-                        }
-                        catch (Exception ex)
-                        {
-                            taskVideoSizeCompletionSource.SetResult(true);
-                        }
-                    });
-                    await taskVideoSizeCompletionSource.Task;
+                    long LengthIn = (long)video.ContentLength;
+                    Length = LengthIn.ToFileSize();
                     AudioBitrate = video.AudioBitrate.ToString();
                     FileName = video.Title;
                     AudioFormats = video.AudioFormat.ToString();
@@ -311,19 +267,19 @@ namespace Phone_Helper
                                             $"Video FPS: {FPS}\n\n" +
                                             $"URIs: {URIs}";
                     YTDownloadBtn.Visibility = Visibility.Visible;
-
+                    
 
 
 
 
                     progressYT.IsEnabled = false;
-
+                    
                     progressYT.Visibility = Visibility.Collapsed;
 
                 }
             }
         }
-
+        
 
 
 
@@ -357,17 +313,18 @@ namespace Phone_Helper
             if (IsHDQuality == true)
             {
                 progressYT.IsEnabled = true;
-
+                
                 progressYT.Visibility = Visibility.Visible;
                 await SaveHDVideoToDisk(link);
-            }
+            } 
             else
             {
                 progressYT.IsEnabled = true;
-
+                
                 progressYT.Visibility = Visibility.Visible;
                 await SaveVideoToDisk(link);
             }
+            
 
         }
 
@@ -380,8 +337,9 @@ namespace Phone_Helper
         /// <returns></returns>
         public async Task SaveVideoToDisk(string DLlink)
         {
-
+            
             progressYT.IsEnabled = true;
+            
             progressYT.Visibility = Visibility.Visible;
             try
             {
@@ -390,29 +348,26 @@ namespace Phone_Helper
                 folderPicker.SuggestedStartLocation = PickerLocationId.VideosLibrary;
                 folderPicker.FileTypeFilter.Add("*");
                 StorageFolder folder = await folderPicker.PickSingleFolderAsync();
-                string fixedname = fixName(video.Title);
-                StorageFile file = await folder.CreateFileAsync(fixedname + video.FileExtension, CreationCollisionOption.GenerateUniqueName);
+                StorageFile file = await folder.CreateFileAsync(video.Title + video.FileExtension, CreationCollisionOption.GenerateUniqueName);
                 await FileIO.WriteBytesAsync(file, await video.GetBytesAsync());
                 ProgressText.Text = "";
                 //File.WriteAllBytes(folder.Path + file, await video.GetBytesAsync());
                 await DownloadComplete(Title);
                 progressYT.IsEnabled = false;
-
+                
                 progressYT.Visibility = Visibility.Collapsed;
-            }
-            catch (Exception ex)
+            } catch (Exception ex)
             {
                 await DownloadFailed(Title);
                 Exceptions.ThrownExceptionError(ex);
                 progressYT.IsEnabled = false;
-
+                
                 progressYT.Visibility = Visibility.Collapsed;
             }
         }
 
 
 
-        TaskCompletionSource<bool> EncodingProgress = new TaskCompletionSource<bool>();
         /// <summary>
         /// 
         /// </summary>
@@ -422,55 +377,50 @@ namespace Phone_Helper
         {
 
             progressYT.IsEnabled = true;
+            
             progressYT.Visibility = Visibility.Visible;
             try
             {
                 ProgressText.Text = "Downloading Video, Please Wait";
+               
+                maxVideo = videoInfos.First(i => i.Resolution == ChosenQualityInt);
+                //maxVideo = videoInfos.First(i => i.Resolution == videoInfos.Max(j => j.Resolution));
 
                 FolderPicker folderPicker = new FolderPicker();
                 folderPicker.SuggestedStartLocation = PickerLocationId.VideosLibrary;
                 folderPicker.FileTypeFilter.Add("*");
                 StorageFolder folder = await folderPicker.PickSingleFolderAsync();
+                //StorageFile file = await folder.CreateFileAsync(maxVideo.Title + maxVideo.FileExtension, CreationCollisionOption.GenerateUniqueName);
+                StorageFile file = await ApplicationData.Current.LocalFolder.CreateFileAsync(maxVideo.Title + maxVideo.FileExtension, CreationCollisionOption.GenerateUniqueName);
 
+                if (file == null)
+                {
+                    ProgressText.Text = "No Folder Selected";
+                }
                 progressYT.Visibility = Visibility.Visible;
                 progressYT.IsEnabled = true;
-
-                IProgress<double> VideoProgress = new Progress<double>(async (value) =>
-                {
-                    await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                    {
-                        progressYT.Value = value;
-                        ProgressText.Text = $"Downloading Video ({Math.Round(value)}%), Please Wait";
-                    });
-                });
-                var file = await SaveYoutubeVideo(folder, maxVideo, false, VideoProgress);
-
-
+                
+                await FileIO.WriteBytesAsync(file, await maxVideo.GetBytesAsync());
                 ProgressText.Text = "Downloading Audio, Please Wait";
-
-                IProgress<double> AudioProgress = new Progress<double>(async (value) =>
-                {
-                    await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                    {
-                        progressYT.Value = value;
-                        ProgressText.Text = $"Downloading Audio ({Math.Round(value)}%), Please Wait";
-                    });
-                });
-
-                var file2 = await SaveYoutubeVideo(folder, maxBitrate, true, AudioProgress);
+//                StorageFile file2 = await folder.CreateFileAsync(maxBitrate.Title + ".aac", CreationCollisionOption.GenerateUniqueName);
+                StorageFile file2 = await ApplicationData.Current.LocalFolder.CreateFileAsync(maxBitrate.Title + ".aac", CreationCollisionOption.GenerateUniqueName);
 
 
+
+
+                await FileIO.WriteBytesAsync(file2, await maxBitrate.GetBytesAsync());
                 ProgressText.Text = "Encoding Audio and Video streams";
-                await MergeAudioandVideoHDAsync(file, file2, $"{maxVideo.Title}_Merged.mp4", folder);
 
-                await EncodingProgress.Task;
 
-                // await DownloadComplete(Title);
+                await MergeAudioandVideoHDAsync(file, file2, $"{maxVideo.Title}.mp4", folder);
+
+
+               // await DownloadComplete(Title);
                 progressYT.Visibility = Visibility.Collapsed;
                 progressYT.IsEnabled = false;
                 ProgressText.Text = "";
                 progressYT.IsEnabled = false;
-
+                
                 progressYT.Visibility = Visibility.Collapsed;
             }
             catch (Exception ex)
@@ -479,114 +429,13 @@ namespace Phone_Helper
                 Exceptions.ThrownExceptionError(ex);
                 YTSearchOutput.Text = $"{ex.Message}\n\n{ex.Source}\n\n{ex.StackTrace}\n\n{ThrownEncodingError}";
                 progressYT.IsEnabled = false;
-
+                
                 progressYT.Visibility = Visibility.Collapsed;
             }
         }
 
 
-        //New Code Below
-        public string fixName(string Name)
-        {
-            string NotAllowedChars = "[\\/\\:*?\"<>|]";
-            Name = Regex.Replace(Name, NotAllowedChars, "_");
 
-            return Name;
-        }
-        public async Task<StorageFile> SaveYoutubeVideo(StorageFolder folder, YouTubeVideo video, bool AudioFile = false, IProgress<double> progress = null, CancellationTokenSource cancellationToken = null)
-        {
-            var Name = fixName(video.FullName);
-            if (AudioFile)
-            {
-                Name += ".aac";
-            }
-
-            long totalSize = 0;
-            var taskVideoSizeCompletionSource = new TaskCompletionSource<bool>();
-            await Task.Run(async () =>
-            {
-                try
-                {
-                    totalSize = (long)maxVideo.ContentLength;
-                    taskVideoSizeCompletionSource.SetResult(true);
-                }
-                catch (Exception ex)
-                {
-                    taskVideoSizeCompletionSource.SetResult(true);
-                }
-            });
-            await taskVideoSizeCompletionSource.Task;
-
-
-            //Check if the file exists and completed
-            var testFile = (StorageFile) await folder.TryGetItemAsync(Name);
-            if(testFile!= null)
-            {
-                var fileAttr = await testFile.GetBasicPropertiesAsync();
-                if (fileAttr.Size == 0)
-                {
-                    await testFile.DeleteAsync();
-                }else if ((long)fileAttr.Size == totalSize || AudioFile)
-                {
-                    //For some reason audio file not return size, for now will consider it's downloaded
-                    return testFile;
-                }
-            }
-            var file = await folder.CreateFileAsync(Name, CreationCollisionOption.GenerateUniqueName);
-
-            TaskCompletionSource<bool> taskCompletionSource = new TaskCompletionSource<bool>();
-            await Task.Run(async () =>
-            {
-
-
-                var totalRead = 0L;
-                var buffer = new byte[1024 * 10];
-                var isMoreDataToRead = true;
-                using (var destination = await file.OpenStreamForWriteAsync())
-                {
-                    using (var source = await video.StreamAsync())
-                    {
-                        do
-                        {
-                            if (cancellationToken != null)
-                            {
-                                cancellationToken.Token.ThrowIfCancellationRequested();
-                            }
-
-                            var read = source.Read(buffer, 0, buffer.Length);
-
-                            if (read == 0)
-                            {
-                                isMoreDataToRead = false;
-                            }
-                            else
-                            {
-                                try
-                                {
-                                    // Write data on disk.
-                                    destination.Write(buffer, 0, read);
-                                }
-                                catch (Exception e)
-                                {
-                                    throw e;
-                                }
-                                totalRead += read;
-
-                                if (progress != null && totalSize > 0)
-                                {
-                                    //await Task.Delay(10);
-                                    var progressValue = (totalRead * 1d) / (totalSize * 1d) * 100;
-                                    progress.Report(progressValue);
-                                }
-                            }
-                        } while (isMoreDataToRead);
-                    }
-                    taskCompletionSource.SetResult(true);
-                }
-            });
-            await taskCompletionSource.Task;
-            return file;
-        }
 
 
 
@@ -601,7 +450,7 @@ namespace Phone_Helper
         private async void YTDownloadMP3Btn_Click(object sender, RoutedEventArgs e)
         {
             progressYT.IsEnabled = true;
-
+            
             progressYT.Visibility = Visibility.Visible;
             await SaveAudioToDisk(link);
 
@@ -610,7 +459,7 @@ namespace Phone_Helper
         public async Task SaveAudioToDisk(string DLlink)
         {
             progressYT.IsEnabled = true;
-
+            
             progressYT.Visibility = Visibility.Visible;
             try
             {
@@ -620,7 +469,7 @@ namespace Phone_Helper
                 var audios = audio.Where(_ => _.AudioFormat == AudioFormat.Aac && _.AdaptiveKind == AdaptiveKind.Audio).ToList();
                 var mpAudio = audios.First(i => i.AudioBitrate == audios.Max(j => j.AudioBitrate)); //FirstOrDefault(x => x.AudioBitrate > 0);
 
-                var video = youTube.GetVideo(DLlink);
+                var video = youTube.GetVideo(DLlink); 
                 FolderPicker MP3folderPicker = new FolderPicker();
                 MP3folderPicker.SuggestedStartLocation = PickerLocationId.VideosLibrary;
                 MP3folderPicker.FileTypeFilter.Add("*");
@@ -631,13 +480,13 @@ namespace Phone_Helper
                     Title = fixextension;
                 }
                 StorageFile mp3file = await mp3folder.CreateFileAsync(Title, CreationCollisionOption.GenerateUniqueName);
-
+                
                 await FileIO.WriteBytesAsync(mp3file, await mpAudio.GetBytesAsync());
                 ProgressText.Text = "";
                 //File.WriteAllBytes(folder.Path + file, await video.GetBytesAsync());
                 await DownloadComplete(Title);
                 progressYT.IsEnabled = false;
-
+                
                 progressYT.Visibility = Visibility.Collapsed;
             }
             catch (Exception ex)
@@ -645,7 +494,7 @@ namespace Phone_Helper
                 await DownloadFailed(Title);
                 Exceptions.ThrownExceptionError(ex);
                 progressYT.IsEnabled = false;
-
+                
                 progressYT.Visibility = Visibility.Collapsed;
             }
         }
@@ -701,33 +550,31 @@ namespace Phone_Helper
         /// <returns></returns>
         public async Task MergeAudioandVideoHDAsync(StorageFile videoFile, StorageFile audioFile, string finalFileName, StorageFolder destinationFolder)
         {
-            try
-            {
-                EncodingProgress = new TaskCompletionSource<bool>();
-                StorageFile _OutputFile = await destinationFolder.CreateFileAsync(fixName(finalFileName), CreationCollisionOption.GenerateUniqueName);
+            
+                StorageFile _OutputFile = await destinationFolder.CreateFileAsync(finalFileName, CreationCollisionOption.GenerateUniqueName);
                 MediaComposition _MediaComposition = new MediaComposition();
                 var clip = await MediaClip.CreateFromFileAsync(videoFile);
-
+            
                 _MediaComposition.Clips.Add(clip);
                 var audio = await BackgroundAudioTrack.CreateFromFileAsync(audioFile);
                 _MediaComposition.BackgroundAudioTracks.Add(audio);
 
                 var videoType = "mp4";
-
-                var Bitrate = clip.GetVideoEncodingProperties().Bitrate;
-                var VideoWidth = clip.GetVideoEncodingProperties().Width;
-                var VideoHeight = clip.GetVideoEncodingProperties().Height;
+            
+                var VideoWidth = (int)clip.GetVideoEncodingProperties().Width;
+                var VideoHeight = (int)clip.GetVideoEncodingProperties().Height;
 
                 MediaEncodingProfile profile = null;
                 switch (videoType)
                 {
                     case "mp4":
-                        profile = MediaEncodingProfile.CreateMp4(VideoEncodingQuality.HD720p);
-                        profile.Video.Bitrate = Bitrate;
-                        profile.Video.Width = VideoWidth;
-                        profile.Video.Height = VideoHeight;
-                        string AudioType = profile.Audio.Type;
+                        profile = MediaEncodingProfile.CreateMp4(VideoProfileBySize(VideoWidth, VideoHeight));
+                    profile.Video.Bitrate = (uint)3000 * 1000;
+                    profile.Video.Width = (uint)VideoWidth;
+                    profile.Video.Height = (uint)VideoHeight;
                         break;
+
+                    
                 }
                 var RenderState = _MediaComposition.RenderToFileAsync(_OutputFile, MediaTrimmingPreference.Precise, profile);
                 RenderState.Progress = new AsyncOperationProgressHandler<TranscodeFailureReason, double>(async (info, progress) =>
@@ -736,18 +583,9 @@ namespace Phone_Helper
                     {
                         try
                         {
-                        //Update your UI progress here
-                        ProgressText.Text = "Encoding Audio and Video streams now";
-                            YTSearchOutput.Text = $"Bitrate: {profile.Video.Bitrate}\n" +
-                                                  $"Video Res: {profile.Video.Width} x {profile.Video.Height}\n" +
-                                                  $"Video ProfileID: {profile.Video.ProfileId}\n" +
-                                                  $"Video Pixel Aspect:{profile.Video.PixelAspectRatio}\n" +
-                                                  $"Video Properties: {profile.Video.Properties}\n\n" +
-                                                  $"Audio Type: {profile.Audio.Type}\n" +
-                                                  $"Audio Bitrate: {profile.Audio.Bitrate}\n" +
-                                                  $"Audio Properties: {profile.Audio.Properties.ToString()}" +
-                                                  $"Container Type: {profile.Container.Type}";
-                            progressYT.Value = progress;
+                            //Update your UI progress here
+                            ProgressText.Text = "Encoding Audio and Video streams now";
+                            var currentProgress = progress;
                         }
                         catch (Exception ex)
                         {
@@ -765,34 +603,31 @@ namespace Phone_Helper
                             var results = info.GetResults();
                             if (results != TranscodeFailureReason.None || status != AsyncStatus.Completed)
                             {
-                            //Encoding failed
-                            ThrownEncodingError = $"An Error Occured:\n{results}";
+                                //Encoding failed
+                                //
+                                ThrownEncodingError = $"An Error Occured:\n{results}";
                             }
                             else
                             {
-                            //Encoding done
-                            ThrownEncodingError = $"Operation finished successfully";
+                                //Encoding done
+                                ThrownEncodingError = $"Operation finished successfully";
                             }
                         }
                         finally
                         {
-                        // Update UI whether the operation succeeded or not
-                        ProgressText.Text = ThrownEncodingError;
+                            // Update UI whether the operation succeeded or not
+                            ProgressText.Text = ThrownEncodingError;
                         }
-                        EncodingProgress.SetResult(true);
                     });
                 });
 
-            } catch (Exception ex)
-            {
-                YTSearchOutput.Text = $"Error:\n\n{ex.Message}\n\n{ex.StackTrace}\n\n{ex.InnerException}";
-            }
+ 
 
         }
 
 
 
-        public static VideoEncodingQuality VideoProfileBySize(uint width, uint height)
+        public static VideoEncodingQuality VideoProfileBySize(int width, int height)
         {
             var defaultProfile = VideoEncodingQuality.HD1080p;
             try
@@ -844,14 +679,6 @@ namespace Phone_Helper
 
 
 
-        private void Test()
-        {
-            
-        }
-
-
-
-
 
         /// <summary>
         /// 
@@ -893,12 +720,11 @@ namespace Phone_Helper
                 }
 
 
-            }
-            catch (Exception ex)
+            } catch (Exception ex)
             {
                 Exceptions.ThrownExceptionError(ex);
             }
-
+             
 
 
 
@@ -1061,31 +887,31 @@ namespace Phone_Helper
 
         }
 
-        public static void ShowNotification(string title, string stringContent, int expireTime = 15)
-        {
-            try
+            public static void ShowNotification(string title, string stringContent, int expireTime = 15)
             {
-                ToastNotifier ToastNotifier = ToastNotificationManager.CreateToastNotifier();
-                Windows.Data.Xml.Dom.XmlDocument toastXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText02);
-                Windows.Data.Xml.Dom.XmlNodeList toastNodeList = toastXml.GetElementsByTagName("text");
-                toastNodeList.Item(0).AppendChild(toastXml.CreateTextNode(title));
-                toastNodeList.Item(1).AppendChild(toastXml.CreateTextNode(stringContent));
-                IXmlNode toastNode = toastXml.SelectSingleNode("/toast");
-                Windows.Data.Xml.Dom.XmlElement audio = toastXml.CreateElement("audio");
-                audio.SetAttribute("src", "ms-winsoundevent:Notification.SMS");
-
-                ToastNotification toast = new ToastNotification(toastXml);
-                if (expireTime > 0)
+                try
                 {
-                    toast.ExpirationTime = DateTime.Now.AddSeconds(expireTime);
-                }
-                ToastNotifier.Show(toast);
-            }
-            catch (System.Exception ex)
-            {
+                    ToastNotifier ToastNotifier = ToastNotificationManager.CreateToastNotifier();
+                    Windows.Data.Xml.Dom.XmlDocument toastXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText02);
+                    Windows.Data.Xml.Dom.XmlNodeList toastNodeList = toastXml.GetElementsByTagName("text");
+                    toastNodeList.Item(0).AppendChild(toastXml.CreateTextNode(title));
+                    toastNodeList.Item(1).AppendChild(toastXml.CreateTextNode(stringContent));
+                    IXmlNode toastNode = toastXml.SelectSingleNode("/toast");
+                    Windows.Data.Xml.Dom.XmlElement audio = toastXml.CreateElement("audio");
+                    audio.SetAttribute("src", "ms-winsoundevent:Notification.SMS");
 
+                    ToastNotification toast = new ToastNotification(toastXml);
+                    if (expireTime > 0)
+                    {
+                        toast.ExpirationTime = DateTime.Now.AddSeconds(expireTime);
+                    }
+                    ToastNotifier.Show(toast);
+                }
+                catch (System.Exception ex)
+                {
+
+                }
             }
-        }
 
         private void HDComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -1093,12 +919,12 @@ namespace Phone_Helper
             var selecteditem = combo.SelectedItem;
             //TextBlockStatus.Text = selecteditem.ToString();
             ChosenQuality = selecteditem.ToString();
-            if (ChosenQuality == "720p")
+            if(ChosenQuality == "720p")
             {
                 IsHDQuality = true;
                 ChosenQualityInt = 720;
             }
-            if (ChosenQuality == "1080p")
+           /* if (ChosenQuality == "1080p")
             {
                 IsHDQuality = true;
                 ChosenQualityInt = 1080;
@@ -1107,7 +933,7 @@ namespace Phone_Helper
             {
                 IsHDQuality = true;
                 ChosenQualityInt = 2160;
-            }
+            }*/
             if (ChosenQuality == "240p")
             {
                 IsHDQuality = false;
@@ -1128,5 +954,5 @@ namespace Phone_Helper
             //var selecteditems = e.AddedItems.FirstOrDefault();
         }
     }
-}
+    }
 

@@ -51,11 +51,11 @@ namespace Phone_Helper
         /// 
         /// MUST CHANGE THESE BEFORE EACH PUBLIC GITHUB RELEASE
         /// </summary>
-        public static string CurrentBuildVersion = "1.13.16-prerelease";
-        public static string PreviousBuildVersion = "1.13.15-prerelease";
-        public static string NextBuildVersion = "1.13.17-prerelease";
-        public static string UploadedFileName = "Easy-Fetch_1.13.17.0_Debug_Test.zip";
-        public static string AppxUpdateName = "Easy-Fetch_1.13.17.0_x86_x64_arm_Debug.appxbundle";
+        public static string CurrentBuildVersion = "1.13.17-prerelease";
+        public static string PreviousBuildVersion = "1.13.16-prerelease";
+        public static string NextBuildVersion = "1.13.18-prerelease";
+        public static string UploadedFileName = "Easy-Fetch_1.13.18.0_Debug_Test.zip";
+        public static string AppxUpdateName = "Easy-Fetch_1.13.18.0_x86_x64_arm_Debug.appxbundle";
         /// <summary>
         /// 
         /// </summary>
@@ -74,6 +74,9 @@ namespace Phone_Helper
             DLUpdate.IsEnabled = true;
             DLUpdate.Visibility = Visibility.Visible;
             InstallUpdateBtn.Visibility = Visibility.Collapsed;
+
+            ProgressBarDownload.Visibility = Visibility.Collapsed;
+            DLUpdate.Visibility = Visibility.Collapsed;
             HomePage.Text = $"[Version: {CurrentBuildVersion}]\n"; 
             HomePage.Text += "This is in ongoing development, suggestions and feedback are welcome. Features and UI not final" + "\n\n";
             HomePage.Text += "A simple tool to help users:" + "\n"
@@ -83,6 +86,12 @@ namespace Phone_Helper
                            + "• Search and Download Appx files from MS Store" + "\n"
                            + "• Download Files and Youtube Videos" + "\n"
                            + "• Extract Archives easily";
+
+            UpdateOut.Text += $"Whats New in .17?\n" +
+                       $"- Fixes to Auto Updater\n" +
+                       $"- Higher quality YT downloads (If experience crashes try non-HD download)\n" +
+                       $"- Fixes to Cab Fetcher Selection handling and UI\n" +
+                       $"- Added This list of changes \n\n";
             ///
             /// Network Check and Check for Updates
             bool isNetworkConnected = NetworkInterface.GetIsNetworkAvailable();
@@ -93,7 +102,7 @@ namespace Phone_Helper
             }
             else
             {
-                UpdateOut.Visibility = Visibility.Collapsed;
+                
                 ProgressBarDownload.Visibility = Visibility.Collapsed;
                 DLUpdate.Visibility = Visibility.Collapsed;
             }
@@ -108,12 +117,13 @@ namespace Phone_Helper
             GitHubClient client = new GitHubClient(new ProductHeaderValue("Easy-Fetch-UWP"));
             IReadOnlyList<Release> releases = await client.Repository.Release.GetAll("Empyreal96", "Easy-Fetch-UWP");
             var latestRelease = releases[0];
+            
             if (latestRelease.Assets != null && latestRelease.Assets.Count > 0)
             {
                 if (latestRelease.TagName == CurrentBuildVersion)
                 {
                     isLatestBuild = true;
-                    UpdateOut.Visibility = Visibility.Collapsed;
+                    
                     ProgressBarDownload.Visibility = Visibility.Collapsed;
                     DLUpdate.Visibility = Visibility.Collapsed;
                 }
@@ -128,10 +138,14 @@ namespace Phone_Helper
                     var updateURL = latestRelease.Assets[0].BrowserDownloadUrl;
                     UpdateURL = $"https://github.com/Empyreal96/Easy-Fetch-UWP/releases/download/{latestRelease.TagName}/{UploadedFileName}";
                     // string updateURL = $"https://github.com/Empyreal96/Easy-Fetch-UWP/releases/download/1.13.16-prerelease/Easy-Fetch_1.13.16.0_Debug_Test.zip";
+                    UpdateOut.Visibility = Visibility.Visible;
+                    ProgressBarDownload.Visibility = Visibility.Visible;
+                    DLUpdate.Visibility = Visibility.Visible;
                     UpdateOut.Text = $"Latest Build: {latestRelease.TagName}\n";
                     UpdateOut.Text += $"Current Build: {CurrentBuildVersion}\n";
                     UpdateOut.Text += $"Date Update Published: {latestRelease.PublishedAt}\n\n";
-                    UpdateOut.Text += $"{UpdateURL}\n";
+                   
+                    UpdateOut.Text += $"Download URL: {UpdateURL}\n";
                 }
             }
         }

@@ -11,11 +11,7 @@
 
 
     <Grid>
-        <Grid.Background>
-            <ImageBrush 
-                ImageSource="/Assets/backdrop.jpg" 
-                Stretch="UniformToFill"/>
-        </Grid.Background>
+        
         
         <Pivot 
             Title="">
@@ -206,22 +202,92 @@
                 </Grid>
 
             </PivotItem>
-            <PivotItem Header="Search Emergency Files">
-                <Grid Width="Auto">
+            <PivotItem 
+                Header="Search Emergency Files">
+                <Grid 
+                    Width="Auto">
+                    
                     <Grid.RowDefinitions>
                         <RowDefinition/>
-                        <RowDefinition Height="0*"/>
+                        <RowDefinition 
+                            Height="0*"/>
                     </Grid.RowDefinitions>
+                    
                     <RelativePanel>
-                    <TextBlock x:Name="SearchHeader2" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" TextWrapping="Wrap" VerticalAlignment="Top" Height="Auto" Width="Auto" Text="Fill in the Info below:" TextAlignment="Center" Margin="5,5,5,5"/>
+                    
+                        <TextBlock 
+                            x:Name="SearchHeader2" 
+                            RelativePanel.AlignTopWithPanel="True" 
+                            RelativePanel.AlignLeftWithPanel="True" 
+                            TextWrapping="Wrap" 
+                            VerticalAlignment="Top" 
+                            Height="Auto" 
+                            Width="Auto" 
+                            Text="Fill in the Info below:" 
+                            TextAlignment="Center" 
+                            Margin="5,5,5,5"/>
                         
-                        <TextBox Margin="5,5,5,5" RelativePanel.AlignLeftWithPanel="True" RelativePanel.Below="SearchHeader2" Text="Product Type:" Width="Auto"  TextWrapping="Wrap" BorderBrush="{x:Null}" IsReadOnly="True" IsHitTestVisible="False" Background="{x:Null}"/>
-                        <TextBox x:Name="ProdTypeInfo2" Margin="5,5,5,5" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="SearchHeader2" Text="" TextWrapping="Wrap" BorderBrush="Gray" PlaceholderText="RM-1104" Width="80"/>
-                        <Button x:Name="SearchBtn2" RelativePanel.Below="ProdTypeInfo2" RelativePanel.RightOf="DLButton2" Margin="5,5,5,5" Width="65" VerticalAlignment="Top" Content="Search" Click="Search2ClickBtn" RenderTransformOrigin="0.523,0.481" Height="33" />
-                        <Button Content="Download" RelativePanel.AlignLeftWithPanel="True" RelativePanel.Below="ProdTypeInfo2" x:Name="DLButton2" Width="90" Margin="5,5,5,5" VerticalAlignment="Top" Click="DLButton2_Click" Height="32"/>
-                        <ScrollViewer Margin="5,5,5,5" RelativePanel.Below="DLButton2" Height="Auto" Grid.RowSpan="2">
+                        <TextBox 
+                            Margin="5,5,5,5" 
+                            RelativePanel.AlignLeftWithPanel="True" 
+                            RelativePanel.Below="SearchHeader2" 
+                            Text="Product Type:" 
+                            Width="Auto"  
+                            TextWrapping="Wrap" 
+                            BorderBrush="{x:Null}" 
+                            IsReadOnly="True" 
+                            IsHitTestVisible="False" 
+                            Background="{x:Null}"/>
+                        
+                        <TextBox 
+                            x:Name="ProdTypeInfo2" 
+                            Margin="5,5,5,5" 
+                            RelativePanel.AlignRightWithPanel="True" 
+                            RelativePanel.Below="SearchHeader2" 
+                            Text="" 
+                            TextWrapping="Wrap" 
+                            BorderBrush="Gray" 
+                            PlaceholderText="RM-1104" 
+                            Width="83"/>
+                        
+                        <Button 
+                            x:Name="SearchBtn2" 
+                            RelativePanel.Below="ProdTypeInfo2" 
+                            RelativePanel.RightOf="DLButton2" 
+                            Margin="5,5,5,5" 
+                            Width="65" 
+                            VerticalAlignment="Top" 
+                            Content="Search" 
+                            Click="Search2ClickBtn" 
+                            RenderTransformOrigin="0.523,0.481" 
+                            Height="33" />
+                        
+                        <Button 
+                            Content="Download" 
+                            RelativePanel.AlignLeftWithPanel="True" 
+                            RelativePanel.Below="ProdTypeInfo2" 
+                            x:Name="DLButton2" 
+                            Width="90" 
+                            Margin="5,5,5,5" 
+                            VerticalAlignment="Top" 
+                            Click="DLButton2_Click" 
+                            Height="32"/>
+                        
+                        <ScrollViewer 
+                            Margin="5,5,5,5" 
+                            RelativePanel.Below="DLButton2"
+                            Height="Auto"
+                            Grid.RowSpan="2">
 
-                            <TextBlock x:Name="SearchOutput2" IsTextSelectionEnabled="True" ScrollViewer.VerticalScrollMode="Enabled" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" Height="Auto" Text="" />
+                            <TextBlock 
+                                x:Name="SearchOutput2" 
+                                IsTextSelectionEnabled="True" 
+                                ScrollViewer.VerticalScrollMode="Enabled" 
+                                ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+                                ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                                TextWrapping="Wrap" 
+                                Height="Auto" 
+                                Text="" />
 
                         </ScrollViewer>
                             </RelativePanel>

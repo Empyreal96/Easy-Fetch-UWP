@@ -19,12 +19,7 @@
                 Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         
-        <Grid.Background>
-            <ImageBrush 
-                ImageSource="/Assets/backdrop.jpg" 
-                Stretch="UniformToFill"/>
-            
-        </Grid.Background>
+        
         <ProgressRing
             x:Name="LoadingRing"
             IsActive="True" 
@@ -51,7 +46,7 @@
                 x:Name="StoreSearchText"
                 Text="" 
                 TextWrapping="Wrap"
-                PlaceholderText="Search Apps Here..."
+                PlaceholderText="Search here for apps. e.g TinyVNC"
                 Padding="10,3,6,6" 
                 Margin="5,14,5,0"
                 VerticalAlignment="Top"/>

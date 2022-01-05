@@ -22,22 +22,18 @@
                 Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         
-        <Grid.Background>
-            <ImageBrush 
-                ImageSource="/Assets/backdrop.jpg" 
-                Stretch="UniformToFill"/>
-        </Grid.Background>
-
-        <RelativePanel 
-            HorizontalAlignment="Left">
         
-        <TextBlock 
+
+        <RelativePanel x:Name="MainPanel">
+
+            <TextBlock 
             x:Name="pageHeader" 
             Grid.Row="0" 
             HorizontalAlignment="Stretch" 
             RequestedTheme="Dark" 
             Text="W10M Cab Fetcher" 
             RelativePanel.AlignTopWithPanel="True" 
+            RelativePanel.AlignHorizontalCenterWithPanel="true"
             VerticalAlignment="Top"
             FontSize="18" 
             TextAlignment="Center"
@@ -45,28 +41,19 @@
             IsHoldingEnabled="False" 
             IsRightTapEnabled="False" 
             IsTapEnabled="False" 
-            Margin="40,5,5,5" 
+            Margin="5,5,5,5" 
             ManipulationMode="None" 
             FontWeight="Bold"/>
             
-            <Grid 
-                x:Name="grid1" 
-                Grid.Row="1" 
-                RelativePanel.Below="pageHeader"  >
-                
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition 
-                    Width="*"></ColumnDefinition>
-                <ColumnDefinition 
-                    Width="Auto"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-        </Grid>
+            
 
 
             <Grid 
                 x:Name="DLGrid" 
                 RelativePanel.Below="pageHeader" 
                 HorizontalAlignment="Stretch" 
+                RelativePanel.AlignLeftWithPanel="True"
+                RelativePanel.AlignRightWithPanel="True"
                 Margin="5,5,5,5">
                 
             <Grid.RowDefinitions>
@@ -74,12 +61,15 @@
                     Height="*"></RowDefinition>
 
             </Grid.RowDefinitions>
-
+                <RelativePanel Grid.Row="1" HorizontalAlignment="Stretch">
                 <Grid 
-                    Grid.Row="1" >
+                    Grid.Row="1"
+                    RelativePanel.AlignRightWithPanel="True"
+                    RelativePanel.AlignLeftWithPanel="True"
+                    >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition 
-                            Width="auto"></ColumnDefinition>
+                            Width="*"></ColumnDefinition>
                         <ColumnDefinition 
                             Width="auto"></ColumnDefinition>
                         <ColumnDefinition 
@@ -89,14 +79,16 @@
                     <ComboBox 
                         x:Name="cabComboBox"
                         Grid.Column="0" 
-                        MinWidth="200"
+                        MinWidth="0"
+                        PlaceholderText="Choose build to download"
                         HorizontalAlignment="Stretch"
-                        Margin="5,5,5,5" />
+                        Margin="5,5,5,5" 
+                        SelectionChanged="cabComboBox_SelectionChanged"/>
                     
                     <Button 
                         x:Name="ButtonDownload"
                         Click="CabDLBtn_Click"
-                        Grid.Column="1" 
+                        Grid.Column="2" 
                         Content="Download" 
                         RelativePanel.AlignRightWithPanel="True"
                         Margin="5,5,5,5" 
@@ -105,17 +97,18 @@
                     
                     <TextBox 
                         x:Name="fileCount"
-                        Grid.Column="2"
+                        Grid.Column="1"
                         IsReadOnly="True"
                         IsTextPredictionEnabled="False" 
                         IsTabStop="False" 
+                        PlaceholderText="File 0/0"
                         IsHitTestVisible="False" 
                         Margin="5,5,5,5"
                         Background="{x:Null}" 
                         BorderBrush="{x:Null}" />
                 </Grid>
-
-        </Grid>
+                </RelativePanel>
+            </Grid>
 
             <Button 
                 x:Name="ButtonPauseResume"
@@ -132,7 +125,9 @@
             <ProgressBar 
                 x:Name="ProgressBarDownload"  
                 RelativePanel.Below="TextBlockProgress" 
-                MinWidth="390"
+                RelativePanel.AlignLeftWithPanel="True"
+                RelativePanel.AlignRightWithPanel="True"
+                MinWidth="0"
                 HorizontalAlignment="Stretch"
                 Height="10" 
                 Margin="5,5,5,5" 

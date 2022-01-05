@@ -21,11 +21,7 @@
                     Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             
-            <Grid.Background>
-                <ImageBrush 
-                    ImageSource="/Assets/backdrop.jpg" 
-                    Stretch="UniformToFill"/>
-            </Grid.Background>
+            
             
             <TextBlock 
                 Grid.Row="0" 

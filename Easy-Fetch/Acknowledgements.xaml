@@ -13,11 +13,7 @@
     <Grid 
         Padding="10,5,10,5">
         
-        <Grid.Background>
-            <ImageBrush 
-                ImageSource="/Assets/backdrop.jpg" 
-                Stretch="UniformToFill"/>
-        </Grid.Background>
+        
         
         <StackPanel>
             
