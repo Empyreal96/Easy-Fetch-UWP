@@ -4,11 +4,13 @@ A Simple utility to help users Manage their device with Device Portal, Download 
 
 
 
-### What's new in v1.13.16
+### What's new in v1.13.18
 
-- Simple Archive Extractor to extract files easily
-- First Test of Github Update checker
-- General UI fixes
+- Improvements to Auto Updater
+- Fixed issue when loading list into Cab Downloader
+- Higher Quality YouTube downloads (*issue* Some HD videos cause an exception/crash, this will be looked at soon)
+- Reverted Background image for Performance (Screenshots updated soon)
+
 
   **[Find the latest release here](https://github.com/Empyreal96/Easy-Fetch-UWP/releases/tag/1.13.16-prerelease)**
 
