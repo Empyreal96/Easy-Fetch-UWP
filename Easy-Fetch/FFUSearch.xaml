@@ -6,7 +6,7 @@
       NavigationCacheMode="Required"
       RequestedTheme="Dark"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+      Background="#FF1E1E1E"
       mc:Ignorable="d">
 
 

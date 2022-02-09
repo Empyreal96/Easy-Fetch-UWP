@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     RequestedTheme="Dark"
           NavigationCacheMode="Required"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="#FF1E1E1E">
 
     <Grid>
         

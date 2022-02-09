@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     NavigationCacheMode="Required"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="#FF1E1E1E">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -24,7 +24,7 @@
         
         
 
-        <RelativePanel x:Name="MainPanel">
+        <RelativePanel x:Name="MainPanel" HorizontalAlignment="Stretch">
 
             <TextBlock 
             x:Name="pageHeader" 
@@ -69,11 +69,11 @@
                     >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition 
-                            Width="*"></ColumnDefinition>
+                            Width="Auto"></ColumnDefinition>
                         <ColumnDefinition 
-                            Width="auto"></ColumnDefinition>
+                            Width="90"></ColumnDefinition>
                         <ColumnDefinition 
-                            Width="auto"></ColumnDefinition>
+                            Width="100"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
 
                     <ComboBox 
@@ -113,7 +113,7 @@
             <Button 
                 x:Name="ButtonPauseResume"
                 Content="Pause" 
-                RelativePanel.AlignHorizontalCenterWith="ProgressBarDownload" 
+                RelativePanel.RightOf="LoadListBtn"
                 RelativePanel.Below="ProgressBarDownload"
                 HorizontalAlignment="Left"
                 Margin="5,5,5,5"
@@ -135,8 +135,8 @@
             
             <Button 
                 x:Name="LoadListBtn"
-                RelativePanel.AlignLeftWith="ProgressBarDownload" 
-                RelativePanel.LeftOf="ButtonPauseResume"
+                RelativePanel.AlignLeftWithPanel="True"
+                
                 RelativePanel.Below="ProgressBarDownload"
                 Margin="5,5,5,5" 
                 Content="Load List"
@@ -145,7 +145,9 @@
             <TextBlock
                 x:Name="TextBlockProgress"  
                 RelativePanel.Below="TextBlockStatus"
-                HorizontalAlignment="Left"
+                RelativePanel.AlignLeftWithPanel="True"
+                RelativePanel.AlignRightWithPanel="True"
+                HorizontalAlignment="Stretch"
                 Margin="5,5,5,5"
                 TextWrapping="Wrap" 
                 VerticalAlignment="Top"
@@ -154,7 +156,9 @@
             <TextBlock 
                 x:Name="TextBlockStatus" 
                 RelativePanel.Below="DLGrid"
-                HorizontalAlignment="Left"
+                RelativePanel.AlignLeftWithPanel="True"
+                RelativePanel.AlignRightWithPanel="True"
+                HorizontalAlignment="Stretch"
                 Margin="5,5,5,5"
                 TextWrapping="Wrap" 
                 VerticalAlignment="Top"

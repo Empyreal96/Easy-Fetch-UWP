@@ -14,7 +14,7 @@
             x:Key="NavigationViewExpandedPaneBackground" />
     </Page.Resources>
 
-    <Grid Background="#FF555555">
+    <Grid Background="#FF2D2D30">
         
         <controls:NavigationView 
                                  IsPaneOpen="False"
@@ -29,10 +29,7 @@
                     Tag="Home"
                     Icon="Home"/>
 
-                <controls:NavigationViewItem 
-                    Content="Device Portal"
-                    Tag="DevicePortalPage" 
-                    Icon="CellPhone" />
+             
                 
                 <controls:NavigationViewItem
                     Content="Simple Archiver" 

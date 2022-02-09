@@ -32,12 +32,12 @@ namespace Phone_Helper
             CreditsBox.Text += "\n\n" + "Third Party Open Source Code used:";
             CreditsBox.Text += "\n" + "• (SoReFetch) Copyright 2021 (c) Gustave Monce";
             CreditsBox.Text += "\n" + "• (WPInternals) Copyright (c) 2018, Rene Lergner";
-            CreditsBox.Text += "\n" + "• (WindowsDevicePortalWrapper) Copyright (c), Microsoft";
+            
             CreditsBox.Text += "\n" + "• (StoreLib) Copyright (c) @StoreDev";
             CreditsBox.Text += "\n" + "• (SharpCompressUWP) @basharast";
 
             CreditsBox.Text += "\n\n Icon and Splash images: https://icons8.com";
-            CreditsBox.Text += "\n App Background by: https://unsplash.com/@iangvalerio";
+            //CreditsBox.Text += "\n App Background by: https://unsplash.com/@iangvalerio";
          }
     }
 }

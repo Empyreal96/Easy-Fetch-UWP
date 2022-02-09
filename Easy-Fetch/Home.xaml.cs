@@ -51,11 +51,11 @@ namespace Phone_Helper
         /// 
         /// MUST CHANGE THESE BEFORE EACH PUBLIC GITHUB RELEASE
         /// </summary>
-        public static string CurrentBuildVersion = "1.13.17-prerelease";
-        public static string PreviousBuildVersion = "1.13.16-prerelease";
-        public static string NextBuildVersion = "1.13.18-prerelease";
-        public static string UploadedFileName = "Easy-Fetch_1.13.18.0_Debug_Test.zip";
-        public static string AppxUpdateName = "Easy-Fetch_1.13.18.0_x86_x64_arm_Debug.appxbundle";
+        public static string CurrentBuildVersion = "1.13.19-prerelease";
+        public static string PreviousBuildVersion = "1.13.18-prerelease";
+        public static string NextBuildVersion = "1.13.20-prerelease";
+        public static string UploadedFileName = "Easy-Fetch_1.13.20.0_Debug_Test.zip";
+        public static string AppxUpdateName = "Easy-Fetch_1.13.20.0_x86_x64_arm_Debug.appxbundle";
         /// <summary>
         /// 
         /// </summary>
@@ -79,19 +79,18 @@ namespace Phone_Helper
             DLUpdate.Visibility = Visibility.Collapsed;
             HomePage.Text = $"[Version: {CurrentBuildVersion}]\n"; 
             HomePage.Text += "This is in ongoing development, suggestions and feedback are welcome. Features and UI not final" + "\n\n";
-            HomePage.Text += "A simple tool to help users:" + "\n"
-                           + "• Use Windows Device Portal to Install Apps etc." + "\n" 
-                           + "• Search for FFU Files and Download" + "\n"
+            HomePage.Text += "A simple tool to help users:" + "\n" +
+                             "• Search for FFU Files and Download" + "\n"
                            + "• Download Update Cabs for W10M" + "\n"
                            + "• Search and Download Appx files from MS Store" + "\n"
                            + "• Download Files and Youtube Videos" + "\n"
                            + "• Extract Archives easily";
 
-            UpdateOut.Text += $"Whats New in .17?\n" +
+            UpdateOut.Text += $"Whats New in .19?\n" +
                        $"- Fixes to Auto Updater\n" +
-                       $"- Higher quality YT downloads (If experience crashes try non-HD download)\n" +
-                       $"- Fixes to Cab Fetcher Selection handling and UI\n" +
-                       $"- Added This list of changes \n\n";
+                       $"- Removed Device Portal in line with WPDevPortal release\n" +
+                       $"- Fixes to Cab Fetcher UI going off screen\n" +
+                       $"- Adjusted UI colour \n\n";
             ///
             /// Network Check and Check for Updates
             bool isNetworkConnected = NetworkInterface.GetIsNetworkAvailable();
