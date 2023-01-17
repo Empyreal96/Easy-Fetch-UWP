@@ -17,7 +17,7 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
-    <PackageCertificateKeyFile>Phone Helper_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>Easy-Fetch_TemporaryKey.pfx</PackageCertificateKeyFile>
     <PackageCertificateThumbprint>
     </PackageCertificateThumbprint>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
@@ -152,7 +152,6 @@
     <Content Include="libvideo.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Phone Helper_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\LargeTile.scale-100.png" />
@@ -297,16 +296,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Downloads\SharpCompressUWP\SharpCompressUWP-main\src\SharpCompress.csproj">
+    <ProjectReference Include="..\SharpCompressUWP\SharpCompress.csproj">
       <Project>{8f9bb3ee-e365-4fe0-b5ee-fb45d7e7fe41}</Project>
       <Name>SharpCompress</Name>
     </ProjectReference>
-    <ProjectReference Include="..\StoreLibnew\StoreLib\StoreLib.csproj">
+    <ProjectReference Include="..\StoreLib\StoreLib.csproj">
       <Project>{654a0023-fbd5-4b83-848a-997d3b8827f2}</Project>
       <Name>StoreLib</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Easy-Fetch_TemporaryKey.pfx" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

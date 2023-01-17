@@ -4,12 +4,9 @@ A Simple utility to help users Manage their device with Device Portal, Download 
 
 
 
-### What's new in v1.13.19
+### What's new in v1.13.20
 
-- Improvements to Auto Updater (.18 fails to download this build, this build expects .20 as next release)
-- Fixed issue with UI going off screen in Cab Downloader
-- Removed Device Portal Page due to release of [WPDevPortal](https://github.com/Empyreal96/WP_Device_Portal)
-- Slightly changed UI colours.
+- Only change for now is updated certificate for PC Installs
 
 
   **[Find the latest release here](https://github.com/Empyreal96/Easy-Fetch-UWP/releases/tag/1.13.16-prerelease)**

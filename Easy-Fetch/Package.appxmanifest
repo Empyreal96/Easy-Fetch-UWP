@@ -10,8 +10,8 @@
 
   <Identity
     Name="Easy-Fetch"
-    Publisher="CN=Empyreal96"
-    Version="1.13.19.0" />
+    Publisher="CN=Empyreal"
+    Version="1.13.20.0" />
 
   <mp:PhoneIdentity PhoneProductId="55ab909d-12ac-4eaf-a703-b4e42706ad13" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 

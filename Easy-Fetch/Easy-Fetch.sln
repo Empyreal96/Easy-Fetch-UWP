@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Easy-Fetch", "Easy-Fetch.csproj", "{DA1E7683-4F60-4647-B2E9-1C6F2A7B61B8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoreLib", "..\StoreLibnew\StoreLib\StoreLib.csproj", "{654A0023-FBD5-4B83-848A-997D3B8827F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoreLib", "..\StoreLib\StoreLib.csproj", "{654A0023-FBD5-4B83-848A-997D3B8827F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpCompress", "..\..\..\..\Downloads\SharpCompressUWP\SharpCompressUWP-main\src\SharpCompress.csproj", "{8F9BB3EE-E365-4FE0-B5EE-FB45D7E7FE41}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpCompress", "..\SharpCompressUWP\SharpCompress.csproj", "{8F9BB3EE-E365-4FE0-B5EE-FB45D7E7FE41}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

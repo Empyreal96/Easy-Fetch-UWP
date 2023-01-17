@@ -51,11 +51,11 @@ namespace Phone_Helper
         /// 
         /// MUST CHANGE THESE BEFORE EACH PUBLIC GITHUB RELEASE
         /// </summary>
-        public static string CurrentBuildVersion = "1.13.19-prerelease";
-        public static string PreviousBuildVersion = "1.13.18-prerelease";
-        public static string NextBuildVersion = "1.13.20-prerelease";
-        public static string UploadedFileName = "Easy-Fetch_1.13.20.0_Debug_Test.zip";
-        public static string AppxUpdateName = "Easy-Fetch_1.13.20.0_x86_x64_arm_Debug.appxbundle";
+        public static string CurrentBuildVersion = "1.13.20-prerelease";
+        public static string PreviousBuildVersion = "1.13.19-prerelease";
+        public static string NextBuildVersion = "1.13.21-prerelease";
+        public static string UploadedFileName = "Easy-Fetch_1.13.21.0_Debug_Test.zip";
+        public static string AppxUpdateName = "Easy-Fetch_1.13.21.0_x86_x64_arm_Debug.appxbundle";
         /// <summary>
         /// 
         /// </summary>
@@ -86,11 +86,8 @@ namespace Phone_Helper
                            + "• Download Files and Youtube Videos" + "\n"
                            + "• Extract Archives easily";
 
-            UpdateOut.Text += $"Whats New in .19?\n" +
-                       $"- Fixes to Auto Updater\n" +
-                       $"- Removed Device Portal in line with WPDevPortal release\n" +
-                       $"- Fixes to Cab Fetcher UI going off screen\n" +
-                       $"- Adjusted UI colour \n\n";
+            UpdateOut.Text += $"Whats New in .20?\n" +
+                       $"- No changes, just renewing certificate for PC installs";
             ///
             /// Network Check and Check for Updates
             bool isNetworkConnected = NetworkInterface.GetIsNetworkAvailable();
